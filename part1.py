@@ -23,6 +23,23 @@ class Solution(object):
         rv = reduce(lambda x, y: x ^ y, li)
         return rv
 
+    def maxDepth(self, root):
+        if not root:
+            return 0
+        return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))
+
+    def isSameTree(self, p, q):
+        '''
+        '''
+        if not p and not q:
+            return True
+
+        if p and q:
+            if p.val != q.val:
+                return False
+            return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+
+        return False
 
 
 def run():
