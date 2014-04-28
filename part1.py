@@ -41,11 +41,23 @@ class Solution(object):
 
         return False
 
+    def reverse(self, x):
+        ''' reverse number
+        '''
+
+        if x < 0:
+            m = -1
+        else:
+            m = 1
+        x = str(x * m)[::-1]
+        return m * int(x)
+
+
 
 def run():
     o = Solution()
     # print o.reverseWords("    the sky is       blue")
-    print o.singleNumber([1, 2, 3, 4, 5, 3, 2, 1, 4])
+    o.singleNumber([1, 2, 3, 4, 5, 3, 2, 1, 4])
 
 
 if __name__ == "__main__":

@@ -26,3 +26,7 @@ DFS
 ### isSameTree
 
 DFS
+
+### reverse number
+
+这道题用 python 略犯规啊，它好心提示一点用都没有
