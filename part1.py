@@ -52,6 +52,51 @@ class Solution(object):
         x = str(x * m)[::-1]
         return m * int(x)
 
+    def hasCycle(self, head):
+        ''' check linked list is a cycle
+        '''
+        if not head or not head.next:
+            return False
+
+        slow = head
+        fast = head.next.next
+
+        while fast:
+            if slow == fast:
+                return True
+            slow = slow.next
+            if not fast.next or not fast.next.next:
+                return False
+
+            fast = fast.next.next
+
+        return False
+
+    def preorderTraversal(self, root):
+        ''' binary tree preorder
+        '''
+        rv = []
+        if not root:
+            return rv
+
+        rv.append(root.val)
+        rv.extend(self.preorderTraversal(root.left))
+        rv.extend(self.preorderTraversal(root.right))
+
+        return rv
+
+    def inorderTraversal(self, root):
+        ''' binary tree inorder
+        '''
+        rv = []
+        if not root:
+            return rv
+
+        rv.extend(self.inorderTraversal(root.left))
+        rv.append(root.val)
+        rv.extend(self.inorderTraversal(root.right))
+
+        return rv
 
 
 def run():

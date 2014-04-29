@@ -30,3 +30,9 @@ DFS
 ### reverse number
 
 这道题用 python 略犯规啊，它好心提示一点用都没有
+
+### hasCycle
+
+前面一个指针一次跳两个，后面一个指针一次跳一个，总会相遇
+
+### preorder && inorder
