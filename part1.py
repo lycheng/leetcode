@@ -98,6 +98,46 @@ class Solution(object):
 
         return rv
 
+    def searchInsert(self, A, target):
+        if target in A:
+            return A.index(target)
+
+        while target > A[0]:
+            target = target - 1
+            if target in A:
+                return A.index(target) + 1
+
+        return 0
+
+    def deleteDuplicates(self, head):
+
+        if not head:
+            return head
+
+        beg = head
+        while head:
+            while head.next and head.next.val == head.val:
+                head.next = head.next.next
+            head = head.next
+
+        return beg
+
+    def climbStairs(self, n):
+        if n in [0, 1, 2]:
+            return n
+
+        two_step_behind = 1
+        one_step_behind = 2
+        cur_step = 2
+        cur_solution = 0
+
+        while cur_step < n:
+            cur_solution = two_step_behind + one_step_behind
+            two_step_behind = one_step_behind
+            one_step_behind = cur_solution
+            cur_step += 1
+
+        return cur_solution
 
 def run():
     o = Solution()
