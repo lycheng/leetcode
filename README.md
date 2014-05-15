@@ -31,3 +31,7 @@ problems: http://oj.leetcode.com/problems/
  - removeElement
  - twoSum
   - 错了挺多次，最开始直接用 index 来找位置，没考虑到重复元素
+ - lengthOfLastWord
+  - 空格处理啊
+ - wordBreak
+  - 将单词分为三部分，找出前缀和后缀，再继续找递归找中间的部分，第一次错误就是认为在两边用过的单词不能重用

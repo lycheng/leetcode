@@ -59,3 +59,45 @@ class Solution(object):
 
         return tuple(result)
 
+    def lengthOfLastWord(self, s):
+        if not s:
+            return 0
+
+        length = 0
+        s = ' '.join(s.split())  # 分割出一个个单词出来
+        words = s.split(' ')
+        if words:
+            length = len(words[-1])
+        return length
+
+    def wordBreak(self, s, dict):
+        if not s:
+            return False
+
+        perfix_words = [word for word in dict if s.startswith(word)]
+        suffix_words = [word for word in dict if s.endswith(word)]
+
+        for perfix_word in perfix_words:
+            if perfix_word == s:
+                return True
+            for suffix_word in suffix_words:
+                if perfix_word + suffix_word == s:
+                    return True
+                len_perfix_word = len(perfix_word)
+                len_suffix_word = len(suffix_word)
+
+                if len_perfix_word + len_suffix_word > len(s):
+                    continue
+
+                mid_word = s[len_perfix_word:len(s) - len_suffix_word]
+                if self.wordBreak(mid_word, dict):
+                    return True
+
+        return False
+
+# if __name__ == "__main__":
+
+    # so = Solution()
+    # s = "12345"
+    # di = ['12', '3', '45']
+    # print so.wordBreak(s, di)
