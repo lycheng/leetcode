@@ -95,9 +95,88 @@ class Solution(object):
 
         return False
 
-# if __name__ == "__main__":
+    def maxProfit_I(self, prices):
+        if not prices:
+            return 0
+        lowest = prices[0]
+        max_profit = 0
 
-    # so = Solution()
-    # s = "12345"
-    # di = ['12', '3', '45']
-    # print so.wordBreak(s, di)
+        for price in prices:
+            diff = price - lowest
+            if max_profit < diff:
+                max_profit = diff
+
+            if price < lowest:
+                lowest = price
+
+        return max_profit
+
+    def maxProfit_II(self, prices):
+        if not prices or len(prices) == 1:
+            return 0
+
+        max_profit = 0
+        for day in range(1, len(prices)):
+            diff = prices[day] - prices[day-1]
+            if diff > 0:
+                max_profit += diff
+
+        return max_profit
+
+    def plusOne(self, digits):
+        if not digits:
+            return []
+
+        digits[-1] = digits[-1] + 1
+        carry = 0
+
+        for index in range(len(digits) - 1, -1, -1):
+            digits[index] = digits[index] + carry
+            if digits[index] >= 10:
+                carry = 1
+                digits[index] = digits[index] - 10
+            else:
+                carry = 0
+
+        rv = digits
+        if carry:
+            rv = [1]
+            rv.extend(digits)
+
+        return rv
+
+    def plusOne_I(self, digits):
+
+        if not digits:
+            return []
+
+        num = int("".join([str(digit) for digit in digits]))
+        num = num + 1
+        return [int(digit) for digit in str(num)]
+
+    def generate(self, numRows):
+        if not numRows:
+            return []
+
+        rv = []
+        rv.append([1])
+        if numRows == 1:
+            return rv
+
+        rv.append([1, 1])
+        if numRows == 2:
+            return rv
+
+        for row in range(2, numRows):
+            cur_nums = [rv[-1][index] + rv[-1][index + 1] for index in range(0, row - 1)]
+            cur_row = [1]
+            cur_row.extend(cur_nums)
+            cur_row.append(1)
+            rv.append(cur_row)
+
+        return rv
+
+
+if __name__ == "__main__":
+    so = Solution()
+    print so.generate(3)

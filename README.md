@@ -35,3 +35,8 @@ problems: http://oj.leetcode.com/problems/
   - 空格处理啊
  - wordBreak
   - 将单词分为三部分，找出前缀和后缀，再继续找递归找中间的部分，第一次错误就是认为在两边用过的单词不能重用
+ - maxProfit I
+ - maxprofit II
+  - 在上升的序列中，最低点买入和最高点卖出跟每次买入卖出获利是一样的
+ - plusOne
+  - 囧，忘了去掉 print 就超时了
