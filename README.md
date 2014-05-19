@@ -40,3 +40,5 @@ problems: http://oj.leetcode.com/problems/
   - 在上升的序列中，最低点买入和最高点卖出跟每次买入卖出获利是一样的
  - plusOne
   - 囧，忘了去掉 print 就超时了
+ - swapPairs
+  - 维护三个指针
