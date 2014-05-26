@@ -40,7 +40,11 @@ problems: http://oj.leetcode.com/problems/
   - 在上升的序列中，最低点买入和最高点卖出跟每次买入卖出获利是一样的
  - plusOne
   - 囧，忘了去掉 print 就超时了
+
+#### part3
  - swapPairs
   - 维护三个指针
  - Populating Next Right Pointers in Each Node
   - 先连接某个节点的子树，再连接该节点的左子树的右子树与该节点的右子树的左子树，再往下递归即可
+ - Permutations
+  - 确定第一个数，然后递归剩下的组合，无重复

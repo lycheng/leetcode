@@ -53,6 +53,29 @@ class Solution(object):
         self.connect(root.left)
         self.connect(root.right)
 
+    def permute(self, num):
+
+        length = len(num)
+        if length == 0:
+            return []
+        if length == 1:
+            return [num]
+
+        result = []
+        for i in range(length):
+            for r in self.permute(num[0:i] + num[i+1:]):
+                result.append([num[i]] + r)
+
+        return result
+
+
+
+    def test_permute(self):
+
+        s = [1, 2, 3, 1]
+        print self.permute(s)
+
 
 if __name__ == "__main__":
-    pass
+    so = Solution()
+    so.test_permute()
