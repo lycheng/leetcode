@@ -42,3 +42,5 @@ problems: http://oj.leetcode.com/problems/
   - 囧，忘了去掉 print 就超时了
  - swapPairs
   - 维护三个指针
+ - Populating Next Right Pointers in Each Node
+  - 先连接某个节点的子树，再连接该节点的左子树的右子树与该节点的右子树的左子树，再往下递归即可

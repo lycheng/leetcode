@@ -39,6 +39,20 @@ class Solution(object):
             print r.val
             r = r.next
 
+    def connect(self, root):
+        if not root or not root.left:
+            return root
+
+        l = root.left
+        r = root.right
+        while l:
+            l.next = r
+            l = l.right
+            r = r.left
+
+        self.connect(root.left)
+        self.connect(root.right)
+
 
 if __name__ == "__main__":
     pass
