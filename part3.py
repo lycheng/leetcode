@@ -68,14 +68,46 @@ class Solution(object):
 
         return result
 
-
-
     def test_permute(self):
 
         s = [1, 2, 3, 1]
         print self.permute(s)
 
+    def mergeTwoLists(self, l1, l2):
+        l3 = ListNode(0)
+        head = l3
+        if not l1 and not l2:
+            return None
+        while l1 and l2:
+            if l1.val < l2.val:
+                l3.next = l1
+                l1 = l1.next
+            else:
+                l3.next = l2
+                l2 = l2.next
+            l3 = l3.next
+        if l1:
+            l3.next = l1
+        else:
+            l3.next = l2
+        return head.next
+
+    def test_mergeTwoLists(self):
+        l1 = ListNode(1)
+        l1.next = ListNode(2)
+        l1.next.next = ListNode(5)
+
+        l2 = ListNode(3)
+        l2.next = ListNode(4)
+        l2.next.next = ListNode(5)
+        l2.next.next.next = ListNode(9)
+
+        l3 = self.mergeTwoLists(l1, l2)
+
+        while l3:
+            print l3.val
+            l3 = l3.next
 
 if __name__ == "__main__":
     so = Solution()
-    so.test_permute()
+    so.test_mergeTwoLists()
