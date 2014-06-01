@@ -49,3 +49,9 @@ problems: http://oj.leetcode.com/problems/
  - Permutations
   - 确定第一个数，然后递归剩下的组合，无重复
  - Merge Two Sorted Lists
+
+#### LRUCache
+ - 使用双向链表保存 cache 数据，使用 dict 来确定某个 key 是否存在
+ - 每次 set 的时候，查看是否存在 key, 存在的话将这个 key 移动到 head，否则插入一个新的节点到 head
+ - 当 size 大于 capacity，时删除最后的节点
+ - 错了几次都是因为很多小细节没处理好
