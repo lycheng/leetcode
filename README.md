@@ -55,3 +55,10 @@ problems: http://oj.leetcode.com/problems/
  - 每次 set 的时候，查看是否存在 key, 存在的话将这个 key 移动到 head，否则插入一个新的节点到 head
  - 当 size 大于 capacity，时删除最后的节点
  - 错了几次都是因为很多小细节没处理好
+
+#### part4
+ - Triangle
+  - 到 n - 1 行时，最小值为 n - 1 行的数与下面两个最小的数的和
+ - Path Sum
+  - 到某个节点之后，递归判断两棵子树是否满足 sum - cur_node_val
+  - 最开始只考虑到正数的情况，所以出错了
