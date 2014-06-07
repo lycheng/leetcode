@@ -67,4 +67,9 @@ problems: http://oj.leetcode.com/problems/
  - Restore IP Addresses
  - N-Queens
   - DFS
+ - N-Queens II
 
+#### part5
+ - Jump Game
+  - 从第一步开始，把可以进入索引加入一个 set 中，排除自身之后再遍历这些索引
+  - 以上是看错题的想法，扫一遍，看能到最远是什么

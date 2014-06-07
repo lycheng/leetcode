@@ -153,6 +153,31 @@ class Solution(object):
         helper(0, n, [-1] * n)
         return result
 
+    def totalNQueens(self, n):
+        self.result = 0
+        def helper(r, n, table):
+            def is_valid_pos(r, i, table):
+                if not r:
+                    return True
+                for j in range(r):
+                    if table[j] == i:
+                        return False
+                    if abs(j - r) == abs(i - table[j]):
+                        return False
+                return True
+
+            if r == n:
+                self.result += 1
+
+            for i in range(n):
+                if not is_valid_pos(r, i, table):
+                    continue
+                table[r] = i
+                helper(r+1, n, table)
+
+        helper(0, n, [-1] * n)
+        return self.result
+
 
 if __name__ == "__main__":
     so = Solution()
@@ -160,5 +185,5 @@ if __name__ == "__main__":
     # so.test_hasPathSum()
     # so.test_sumNumbers()
     # so.test_restoreIpAddresses()
-
-    print so.solveNQueens(4)
+    # print so.solveNQueens(4)
+    print so.totalNQueens(4)
