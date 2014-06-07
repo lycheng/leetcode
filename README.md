@@ -65,4 +65,6 @@ problems: http://oj.leetcode.com/problems/
  - Sum Root to Leaf Numbers
   - 递归
  - Restore IP Addresses
+ - N-Queens
+  - DFS
 

@@ -117,11 +117,41 @@ class Solution(object):
 
         return rv
 
-
     def test_restoreIpAddresses(self):
         print self.restoreIpAddresses('25525511135')
         print self.restoreIpAddresses('8888')
         print self.restoreIpAddresses('010010')
+
+    def solveNQueens(self, n):
+        result = []
+        def helper(r, n, table):
+            def is_valid_pos(r, i, table):
+                if not r:
+                    return True
+                for j in range(r):
+                    if table[j] == i:
+                        return False
+                    if abs(j - r) == abs(i - table[j]):
+                        return False
+                return True
+
+            if r == n:
+                t = []
+                for i in range(n):
+                    row = ["."] * n
+                    row[table[i]] = "Q"
+                    row = ''.join(row)
+                    t.append(row)
+                result.append(t)
+
+            for i in range(n):
+                if not is_valid_pos(r, i, table):
+                    continue
+                table[r] = i
+                helper(r+1, n, table)
+
+        helper(0, n, [-1] * n)
+        return result
 
 
 if __name__ == "__main__":
@@ -129,4 +159,6 @@ if __name__ == "__main__":
     # so.test_minimumTotal()
     # so.test_hasPathSum()
     # so.test_sumNumbers()
-    so.test_restoreIpAddresses()
+    # so.test_restoreIpAddresses()
+
+    print so.solveNQueens(4)
