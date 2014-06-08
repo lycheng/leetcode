@@ -73,3 +73,7 @@ problems: http://oj.leetcode.com/problems/
  - Jump Game
   - 从第一步开始，把可以进入索引加入一个 set 中，排除自身之后再遍历这些索引
   - 以上是看错题的想法，扫一遍，看能到最远是什么
+ - Jump Game II
+  - 从零开始，看跳一步能到的区域是什么，再看跳两步能到的区域是什么
+ - Permutations II
+  - 递归
