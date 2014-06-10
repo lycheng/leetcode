@@ -80,3 +80,7 @@ problems: http://oj.leetcode.com/problems/
  - Unique Binary Search Trees
   - DP
   - 以不同的数当根节点的 BST 等于其左右子树的 BST 的乘积
+ - Unique Paths
+  - (i, j) = (i - 1, j) + (i, j -1)
+ - Convert Sorted Array to Binary Search Tree
+  - 确认中间节点之后，处理左右子树

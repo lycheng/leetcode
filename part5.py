@@ -4,6 +4,7 @@
 __author__ = 'lycheng'
 __email__ = "lycheng997@gmail.com"
 
+from public import TreeNode
 
 class Solution(object):
 
@@ -78,6 +79,27 @@ class Solution(object):
 
         return count[n]
 
+    def uniquePaths(self, m, n):
+        table = [[0] * m] * n
+        for i in xrange(n):
+            for j in xrange(m):
+                if not i or not j:
+                    table[i][j] = 1
+                    continue
+                table[i][j] = table[i-1][j] + table[i][j-1]
+
+        return table[-1][-1]
+
+    def sortedArrayToBST(self, num):
+        if not num:
+            return None
+
+        mid = len(num) / 2
+        root = TreeNode(num[mid])
+        root.left = self.sortedArrayToBST(num[0:mid])
+        root.right = self.sortedArrayToBST(num[mid+1:])
+        return root
+
 
 if __name__ == "__main__":
     so = Solution()
@@ -89,5 +111,6 @@ if __name__ == "__main__":
     # so.test_canJump()
     # print so.jump([2,3,1,1,4])
     # print so.permuteUnique([1,1,2])
-    print so.numTrees(3)
-
+    # print so.numTrees(3)
+    # print so.uniquePaths(2, 3)
+    print so.sortedArrayToBST([1, 2, 3])
