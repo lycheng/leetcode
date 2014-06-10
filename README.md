@@ -84,3 +84,8 @@ problems: http://oj.leetcode.com/problems/
   - (i, j) = (i - 1, j) + (i, j -1)
  - Convert Sorted Array to Binary Search Tree
   - 确认中间节点之后，处理左右子树
+
+#### part6
+ - Path Sum II
+  - 经过一个节点之后 sum - root.val 递归左右子树
+  - 错了几次没处理负数的情况
