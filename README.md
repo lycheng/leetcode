@@ -89,3 +89,6 @@ problems: http://oj.leetcode.com/problems/
  - Path Sum II
   - 经过一个节点之后 sum - root.val 递归左右子树
   - 错了几次没处理负数的情况
+ - removeDuplicates
+ - Unique Paths II
+  - 需要小心处理当前是否可达
