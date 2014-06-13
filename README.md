@@ -92,3 +92,5 @@ problems: http://oj.leetcode.com/problems/
  - removeDuplicates
  - Unique Paths II
   - 需要小心处理当前是否可达
+ - Symmetric Tree
+  - 递归处理 left.left == right.right and left.right == right.left

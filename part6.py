@@ -80,10 +80,6 @@ class Solution(object):
                 else:
                     min_prev = min(table[row_index-1][col_index], table[row_index][col_index-1])
                 table[row_index][col_index] = grid[row_index][col_index] + min_prev
-
-                # for row in table:
-                    # print row
-                # print "--"
         return table[-1][-1]
 
     def test_minPathSum(self):
@@ -104,11 +100,6 @@ class Solution(object):
 
         for i in xrange(row_num):
             for j in xrange(col_num):
-
-                # for row in table:
-                    # print row
-                # print "--"
-
                 if not i:
                     if obstacleGrid[i][j]:
                         break
@@ -146,10 +137,38 @@ class Solution(object):
         ]
         print self.uniquePathsWithObstacles(grid)
 
+    def isSymmetric(self, root):
+
+        if not root:
+            return True
+
+        def helper(left, right):
+            if not left and not right:
+                return True
+            if not (left and right):
+                return False
+            if left.val != right.val:
+                return False
+            return helper(left.left, right.right) and helper(left.right, right.left)
+
+        return helper(root.left, root.right)
+
+    def test_isSymmetric(self):
+        root = TreeNode(1)
+        root.left = TreeNode(2)
+        root.right = TreeNode(2)
+        root.left.left = TreeNode(3)
+        root.left.right = TreeNode(4)
+        root.right.left = TreeNode(4)
+        root.right.right = TreeNode(3)
+
+        print self.isSymmetric(root)
+
 
 if __name__ == "__main__":
     so = Solution()
     # so.test_pathSum()
     # print so.removeDuplicates([1, 1, 2, 2, 3])
     # so.test_minPathSum()
-    so.test_uniquePathsWithObstacles()
+    # so.test_uniquePathsWithObstacles()
+    so.test_isSymmetric()
