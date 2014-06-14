@@ -94,3 +94,5 @@ problems: http://oj.leetcode.com/problems/
   - 需要小心处理当前是否可达
  - Symmetric Tree
   - 递归处理 left.left == right.right and left.right == right.left
+ - Minimum Depth of Binary Tree
+  - 错了四次，想用 BFS 的做法去看，然后发现写起来很不直观，改成用递归的做法

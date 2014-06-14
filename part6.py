@@ -164,6 +164,39 @@ class Solution(object):
 
         print self.isSymmetric(root)
 
+    def minDepth(self, root):
+        if not root:
+            return 0
+        if not root.left and not root.right:
+            return 1
+        if not root.left:
+            return self.minDepth(root.right) + 1
+        if not root.right:
+            return self.minDepth(root.left) + 1
+
+        return min(self.minDepth(root.left), self.minDepth(root.right)) + 1
+
+    def test_minDepth(self):
+        root = TreeNode(1)
+        root.left = TreeNode(2)
+        root.right = TreeNode(2)
+        root.left.left = TreeNode(3)
+        root.right.right = TreeNode(3)
+        print self.minDepth(root)
+
+        root = TreeNode(1)
+        print self.minDepth(root)
+
+        root = TreeNode(1)
+        root.left = TreeNode(2)
+        print self.minDepth(root)
+
+        root = TreeNode(1)
+        root.left = TreeNode(2)
+        root.right = TreeNode(3)
+        root.left.left = TreeNode(4)
+        root.left.right = TreeNode(5)
+        print self.minDepth(root)
 
 if __name__ == "__main__":
     so = Solution()
@@ -171,4 +204,5 @@ if __name__ == "__main__":
     # print so.removeDuplicates([1, 1, 2, 2, 3])
     # so.test_minPathSum()
     # so.test_uniquePathsWithObstacles()
-    so.test_isSymmetric()
+    # so.test_isSymmetric()
+    so.test_minDepth()
