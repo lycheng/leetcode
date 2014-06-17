@@ -6,12 +6,13 @@ __email__ = "lycheng997@gmail.com"
 
 from public import TreeNode
 
-class Solution(object):
+import unittest
+
+class Solution(unittest.TestCase):
 
     def pathSum(self, root, sum):
 
         self.result = []
-
         def helper(root, target, rv):
             if not root:
                 return []
@@ -43,7 +44,7 @@ class Solution(object):
         root.right.right.left = TreeNode(5)
         root.right.right.right = TreeNode(1)
 
-        print self.pathSum(root, 22)
+        self.assertEqual(self.pathSum(root, 22), [[5, 4, 11, 2], [5, 8, 4, 5]])
 
     def removeDuplicates(self, A):
 
@@ -88,7 +89,7 @@ class Solution(object):
             [2, 1, 0],
             [2, 0, 1]
         ]
-        print self.minPathSum(grid)
+        self.assertEqual(self.minPathSum(grid), 4)
 
     def uniquePathsWithObstacles(self, obstacleGrid):
         row_num = len(obstacleGrid)
@@ -123,19 +124,19 @@ class Solution(object):
             [0,0,0],
             [1,0,0]
         ]
-        print self.uniquePathsWithObstacles(grid)
+        self.assertEqual(self.uniquePathsWithObstacles(grid), 4)
         grid = [
             [1],
             [0]
         ]
-        print self.uniquePathsWithObstacles(grid)
+        self.assertEqual(self.uniquePathsWithObstacles(grid), 0)
         grid = [
                 [0,1,0,0,0],
                 [1,0,0,0,0],
                 [0,0,0,0,0],
                 [0,0,0,0,0]
         ]
-        print self.uniquePathsWithObstacles(grid)
+        self.assertEqual(self.uniquePathsWithObstacles(grid), 0)
 
     def isSymmetric(self, root):
 
@@ -162,7 +163,7 @@ class Solution(object):
         root.right.left = TreeNode(4)
         root.right.right = TreeNode(3)
 
-        print self.isSymmetric(root)
+        self.assertEqual(self.isSymmetric(root), True)
 
     def minDepth(self, root):
         if not root:
@@ -182,27 +183,53 @@ class Solution(object):
         root.right = TreeNode(2)
         root.left.left = TreeNode(3)
         root.right.right = TreeNode(3)
-        print self.minDepth(root)
+        self.assertEqual(self.minDepth(root), 3)
 
         root = TreeNode(1)
-        print self.minDepth(root)
+        self.assertEqual(self.minDepth(root), 1)
 
         root = TreeNode(1)
         root.left = TreeNode(2)
-        print self.minDepth(root)
+        self.assertEqual(self.minDepth(root), 2)
 
         root = TreeNode(1)
         root.left = TreeNode(2)
         root.right = TreeNode(3)
         root.left.left = TreeNode(4)
         root.left.right = TreeNode(5)
-        print self.minDepth(root)
+        self.assertEqual(self.minDepth(root), 2)
+
+    def isInterleave(self, s1, s2, s3):
+        len_s1 = len(s1)
+        len_s2 = len(s2)
+        len_s3 = len(s3)
+
+        if len_s1 + len_s2 != len_s3:
+            return False
+
+        match = []
+        for i in range(len_s1+1):
+            match.append([False] * (len_s2+1))
+
+        for i in range(len_s1+1):
+            for j in range(len_s2+1):
+                if not i and not j:
+                    match[i][j] = True
+                elif i > 0 and match[i-1][j] and s3[i+j-1] == s1[i-1]:
+                    match[i][j] = True
+                elif j > 0 and match[i][j-1] and s3[i+j-1] == s2[j-1]:
+                    match[i][j] = True
+                else:
+                    match[i][j] = False
+
+        return match[-1][-1]
+
+    def test_isInterleave(self):
+        s1 = 'aabcc'
+        s2 = 'dbbca'
+        self.assertTrue(self.isInterleave(s1,s2,'aadbbcbcac'))
+        self.assertFalse(self.isInterleave(s1,s2,'aadbbbaccc'))
+
 
 if __name__ == "__main__":
-    so = Solution()
-    # so.test_pathSum()
-    # print so.removeDuplicates([1, 1, 2, 2, 3])
-    # so.test_minPathSum()
-    # so.test_uniquePathsWithObstacles()
-    # so.test_isSymmetric()
-    so.test_minDepth()
+    unittest.main()
