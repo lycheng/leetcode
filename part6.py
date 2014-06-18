@@ -230,6 +230,35 @@ class Solution(unittest.TestCase):
         self.assertTrue(self.isInterleave(s1,s2,'aadbbcbcac'))
         self.assertFalse(self.isInterleave(s1,s2,'aadbbbaccc'))
 
+    def numDistinct(self, S, T):
+
+        len_s = len(S)
+        len_t = len(T)
+
+        if len_t > len_s:
+            return 0
+
+        match = []
+        for i in range(len_s+1):
+            match.append([0] * (len_t+1))
+
+        for i in range(len_s+1):
+            match[i][0] = 1
+
+        for i in range(1, len_s+1):
+            for j in range(1, min(i+1, len_t+1)):
+                if S[i-1] == T[j-1]:
+                    match[i][j] = match[i-1][j-1] + match[i-1][j]
+                else:
+                    match[i][j] = match[i-1][j]
+
+        return match[-1][-1]
+
+    def test_numDistinct(self):
+        S = 'ccc'
+        T = 'c'
+        self.assertEqual(self.numDistinct(S, T), 3)
+
 
 if __name__ == "__main__":
     unittest.main()

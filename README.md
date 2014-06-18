@@ -98,3 +98,7 @@ problems: http://oj.leetcode.com/problems/
   - 错了四次，想用 BFS 的做法去看，然后发现写起来很不直观，改成用递归的做法
  - Interleaving String
   - match[i][j] 表示 s1 的前 i 项和 s2 的前 j 项能否组合成字符串
+ - Distinct Subsequences
+  - DP，状态转移画图会比较清晰点
+ - Decode Ways
+  - DP，奇怪的样例 01 不当作争取的数字
