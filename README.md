@@ -102,3 +102,5 @@ problems: http://oj.leetcode.com/problems/
   - DP，状态转移画图会比较清晰点
  - Decode Ways
   - DP，奇怪的样例 01 不当作争取的数字
+ - Remove Nth Node From End of List
+  - 一个指针领先几步，然后和落后的指针一起行动，领先的指针到达结尾的时候后面的指针到达需要删除的节点的前一个节点，注意处理头节点
