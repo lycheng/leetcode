@@ -156,5 +156,32 @@ class Solution(unittest.TestCase):
         r = self.addBinary('1111', '1111')
         self.assertEqual(r, '11110')
 
+    def merge(self, A, m, B, n):
+
+        last = m + n - 1
+        a_last = m - 1
+        b_last = n - 1
+        while a_last >= 0 and b_last >= 0:
+            if A[a_last] >= B[b_last]:
+                A[last] = A[a_last]
+                a_last -= 1
+            else:
+                A[last] = B[b_last]
+                b_last -= 1
+
+            last -= 1
+
+        while b_last >= 0:
+            A[last] = B[b_last]
+            b_last -= 1
+            last -= 1
+
+    def test_merge(self):
+
+        A = [1, 2, 5, 9, None, None, None]
+        B = [3, 4, 7]
+        self.merge(A, 4, B, 3)
+        self.assertEqual(A, [1,2,3,4,5,7,9])
+
 if __name__ == "__main__":
     unittest.main()

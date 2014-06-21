@@ -100,9 +100,16 @@ problems: http://oj.leetcode.com/problems/
   - match[i][j] 表示 s1 的前 i 项和 s2 的前 j 项能否组合成字符串
  - Distinct Subsequences
   - DP，状态转移画图会比较清晰点
+
+#### part7
  - Decode Ways
   - DP，奇怪的样例 01 不当作争取的数字
  - Remove Nth Node From End of List
   - 一个指针领先几步，然后和落后的指针一起行动，领先的指针到达结尾的时候后面的指针到达需要删除的节点的前一个节点，注意处理头节点
+ - remove duplicates II
+ - level order
+  - 树的 BFS
  - Add Binary
   - 补前导零，然后模拟进位
+ - Merge Sorted Array
+  - 从后开始进行比较
