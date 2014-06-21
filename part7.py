@@ -177,11 +177,79 @@ class Solution(unittest.TestCase):
             last -= 1
 
     def test_merge(self):
-
         A = [1, 2, 5, 9, None, None, None]
         B = [3, 4, 7]
         self.merge(A, 4, B, 3)
         self.assertEqual(A, [1,2,3,4,5,7,9])
+
+    def simplifyPath(self, path):
+        path = path.strip().replace('//', '/')
+        items = path.split('/')
+
+        stack = []
+        for item in items:
+            if item == "..":
+                if stack:
+                    stack.pop()
+            elif not item or item == ".":
+                continue
+            else:
+                stack.append(item)
+        if not stack:
+            return "/"
+        else:
+            return "/%s" % "/".join(stack)
+
+    def test_simplifyPath(self):
+        self.assertEqual(self.simplifyPath("/home/"), "/home")
+        self.assertEqual(self.simplifyPath("/a/./b/../../c/"), "/c")
+        self.assertEqual(self.simplifyPath("/../"), "/")
+        self.assertEqual(self.simplifyPath("/home/foo/"), "/home/foo")
+
+    def rotateRight(self, head, k):
+
+        def cal_list_len(head):
+            t = head
+            length = 0
+            while t:
+                t = t.next
+                length += 1
+            return length
+
+        if not head:
+            return head
+        ahead = head
+        behind = head
+
+        k = k % cal_list_len(head)
+
+        for i in range(k):
+            ahead = ahead.next
+            if not ahead:
+                return head
+
+        while ahead.next:
+            ahead = ahead.next
+            behind = behind.next
+
+        ahead.next = head
+        head = behind.next
+        behind.next = None
+        return head
+
+    def test_rotateRight(self):
+
+        src = [1, 2, 3, 4, 5]
+        rv  = self.rotateRight(list_to_linked(src), 2)
+        self.assertEqual([4, 5, 1, 2, 3], linked_to_list(rv))
+
+        src = [1, 2, 3, 4, 5]
+        rv  = self.rotateRight(list_to_linked(src), 5)
+        self.assertEqual(src, linked_to_list(rv))
+
+        src = [1]
+        rv  = self.rotateRight(list_to_linked(src), 1)
+        self.assertEqual(src, linked_to_list(rv))
 
 if __name__ == "__main__":
     unittest.main()

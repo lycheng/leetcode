@@ -113,3 +113,6 @@ problems: http://oj.leetcode.com/problems/
   - 补前导零，然后模拟进位
  - Merge Sorted Array
   - 从后开始进行比较
+ - Simplily Path
+ - Rotate List
+  - k 有可能比链表长度大
