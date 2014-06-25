@@ -251,5 +251,65 @@ class Solution(unittest.TestCase):
         rv  = self.rotateRight(list_to_linked(src), 1)
         self.assertEqual(src, linked_to_list(rv))
 
+    def levelOrderBottom(self, root):
+        rv = []
+        if not root:
+            return rv
+        rv.append([root.val])
+        cur_level = [root]
+        next_level = []
+        while cur_level:
+            node = cur_level.pop(0)
+            if node.left:
+                next_level.append(node.left)
+            if node.right:
+                next_level.append(node.right)
+
+            if not cur_level:
+                if not next_level:
+                    break
+                rv.append([n.val for n in next_level])
+                cur_level = next_level
+                next_level = []
+
+        return rv[::-1]
+
+    def test_levelOrderBottom(self):
+        root = TreeNode(3)
+        root.left = TreeNode(9)
+        root.right = TreeNode(20)
+        root.right.left = TreeNode(15)
+        root.right.right = TreeNode(7)
+
+        rv = self.levelOrderBottom(root)
+        self.assertEqual(rv, [[15,7],[9, 20],[3]])
+
+    def isBalanced(self, root):
+        return self.helper(root) >= 0
+
+    def helper(self, root):
+        if not root:
+            return 0
+        left_depth = self.helper(root.left)
+        right_depth = self.helper(root.right)
+
+        if left_depth < 0 or right_depth < 0 or abs(left_depth - right_depth) > 1:
+            return -1
+
+        return max(left_depth, right_depth)  + 1
+
+
+    def test_isBalanced(self):
+        root = TreeNode(3)
+        root.left = TreeNode(9)
+        root.right = TreeNode(20)
+        root.right.left = TreeNode(15)
+        root.right.right = TreeNode(7)
+        self.assertTrue(self.isBalanced(root))
+
+        root.right.right.left = TreeNode(7)
+        self.assertFalse(self.isBalanced(root))
+
+
 if __name__ == "__main__":
     unittest.main()
