@@ -120,3 +120,7 @@ problems: http://oj.leetcode.com/problems/
   - level order
  - Balanced Binary Tree
   - 开始用一个内部函数的时候死活 runtime error，后来发现使用类函数就可以
+
+#### part8
+ - Rotate Image
+  - 先沿对角线翻转，然后上下翻转
