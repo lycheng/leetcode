@@ -124,3 +124,5 @@ problems: http://oj.leetcode.com/problems/
 #### part8
  - Rotate Image
   - 先沿对角线翻转，然后上下翻转
+ - Remove Duplicates from Sorted List II
+  - 额外使用一个头节点
