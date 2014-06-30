@@ -4,7 +4,7 @@
 __author__ = 'lycheng'
 __email__ = "lycheng997@gmail.com"
 
-from public import linked_to_list, list_to_linked, ListNode
+from public import linked_to_list, list_to_linked, ListNode, TreeNode
 
 import unittest
 
@@ -67,6 +67,39 @@ class Solution(unittest.TestCase):
         root = list_to_linked(src)
         head = self.deleteDuplicates(root)
         self.assertEqual(linked_to_list(head), [2, 3])
+
+    def isValidBST(self, root):
+        def helper(root, min_val, max_val):
+            if not root:
+                return True
+
+            if root.val >= max_val or root.val <= min_val:
+                return False
+
+            return helper(root.left, min_val, root.val) and helper(root.right, root.val, max_val)
+
+
+        if not root:
+            return True
+
+        min_val = -999999999999
+        max_val = -min_val
+
+        return helper(root, min_val, max_val)
+
+    def test_isValidBST(self):
+
+        root = TreeNode(8)
+        root.left = TreeNode(3)
+        root.left.left = TreeNode(1)
+        root.left.right = TreeNode(6)
+        root.left.right.left = TreeNode(4)
+        root.left.right.right = TreeNode(7)
+        root.right = TreeNode(10)
+        root.right.right = TreeNode(14)
+        root.right.right.left = TreeNode(13)
+
+        self.assertTrue(self.isValidBST(root))
 
 
 if __name__ == "__main__":

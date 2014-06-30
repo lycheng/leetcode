@@ -126,3 +126,6 @@ problems: http://oj.leetcode.com/problems/
   - 先沿对角线翻转，然后上下翻转
  - Remove Duplicates from Sorted List II
   - 额外使用一个头节点
+ - Validate Binary Search Tree
+  - 左子树的最大值不得超过根节点，右子树的最小值不得小于根节点
+  - 中序遍历一次，然后看下是不是递增
