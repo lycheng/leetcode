@@ -129,3 +129,6 @@ problems: http://oj.leetcode.com/problems/
  - Validate Binary Search Tree
   - 左子树的最大值不得超过根节点，右子树的最小值不得小于根节点
   - 中序遍历一次，然后看下是不是递增
+ - Binary Tree Postorder Traversal
+ - Candy
+  - 正向扫一遍处理递增的情况，反向扫一遍处理递减的情况

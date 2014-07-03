@@ -101,6 +101,52 @@ class Solution(unittest.TestCase):
 
         self.assertTrue(self.isValidBST(root))
 
+    def postorderTraversal(self, root):
+        rv = []
+        if not root:
+            return rv
+
+        rv.extend(self.postorderTraversal(root.left))
+        rv.extend(self.postorderTraversal(root.right))
+        rv.append(root.val)
+
+        return rv
+
+    def test_postorderTraversal(self):
+        root = TreeNode(1)
+        root.right = TreeNode(2)
+        root.right.left = TreeNode(3)
+
+        self.assertEqual(self.postorderTraversal(root), [3, 2, 1])
+
+    def candy(self, ratings):
+        len_ratings = len(ratings)
+        if len_ratings == 1:
+            return 1
+
+        candy_list = [1] * len_ratings
+
+        if ratings[0] > ratings[1]:
+            candy_list[0] = 2
+
+        for i in range(1, len_ratings):
+            if ratings[i] > ratings[i-1] and candy_list[i-1] >= candy_list[i]:
+                candy_list[i] = candy_list[i-1] + 1
+
+        for i in reversed(range(1, len_ratings)):
+            if ratings[i-1] > ratings[i] and candy_list[i-1] <= candy_list[i]:
+                candy_list[i-1] = candy_list[i] + 1
+
+        return sum(candy_list)
+
+    def test_candy(self):
+        ratings = [1, 2, 3]
+        self.assertEqual(6, self.candy(ratings))
+
+
+        ratings = [5, 3, 1]
+        self.assertEqual(6, self.candy(ratings))
+
 
 if __name__ == "__main__":
     unittest.main()
