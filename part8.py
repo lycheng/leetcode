@@ -147,6 +147,17 @@ class Solution(unittest.TestCase):
         ratings = [5, 3, 1]
         self.assertEqual(6, self.candy(ratings))
 
+    def searchMatrix(self, matrix, target):
+        len_rows = len(matrix)
+        for row in range(len_rows):
+            if target < matrix[row][0]:
+                return False
+            if target > matrix[row][-1]:
+                continue
+            return target in matrix[row]
+
+        return False
+
 
 if __name__ == "__main__":
     unittest.main()
