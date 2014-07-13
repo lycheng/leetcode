@@ -158,6 +158,100 @@ class Solution(unittest.TestCase):
 
         return False
 
+    def generateMatrix(self, n):
+        def helper(num, x, y, matrix):
+            if x >= n or y >= n or matrix[x][y]:
+                return
+            src_x, src_y = x, y
+            matrix[x][y] = num
+            num = num + 1
+
+            for j in range(y+1, n):
+                if matrix[x][j]:
+                    j = j - 1
+                    break
+                matrix[x][j] = num
+                num += 1
+            y = j
+
+            for i in range(x+1, n):
+                if matrix[i][y]:
+                    i = i - 1
+                    break
+                matrix[i][y] = num
+                num += 1
+            x = i
+
+            for j in range(y-1, -1, -1):
+                if matrix[x][j]:
+                    j = j + 1
+                    break
+                matrix[x][j] = num
+                num += 1
+            y = j
+
+            for i in range(x-1, -1, -1):
+                if matrix[i][y]:
+                    i = i + 1
+                    break
+                matrix[i][y] = num
+                num += 1
+            x = i
+
+            if num > n ** 2:
+                return
+            helper(num, src_x+1, src_y+1, matrix)
+
+        if not n:
+            return []
+        if n == 1:
+            return [[1]]
+        matrix = [[0] * n for i in range(n)]
+
+        helper(1, 0, 0, matrix)
+        return matrix
+
+    def test_generateMatrix(self):
+        self.assertEqual(self.generateMatrix(1), [[1]])
+        self.assertEqual(self.generateMatrix(2), [[1, 2], [4, 3]])
+
+    def detectCycle(self, head):
+
+        if not head:
+            return None
+
+        fast = head
+        slow = head
+
+        while fast and slow:
+            slow = slow.next
+            fast = fast.next
+            if fast:
+                fast = fast.next
+            if fast == slow:
+                break
+
+        if not fast:
+            return None
+
+        slow = head
+        while slow != fast:
+            slow = slow.next
+            fast = fast.next
+
+        return fast
+
+    def test_detectCycle(self):
+        head = ListNode(1)
+        head.next = ListNode(2)
+        head.next.next = ListNode(3)
+        head.next.next.next = ListNode(4)
+        head.next.next.next.next = ListNode(5)
+        head.next.next.next.next.next = ListNode(6)
+        head.next.next.next.next.next.next = head.next.next
+        self.assertEqual(self.detectCycle(head).val, 3)
+
+
 
 if __name__ == "__main__":
     unittest.main()

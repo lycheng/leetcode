@@ -132,3 +132,7 @@ problems: http://oj.leetcode.com/problems/
  - Binary Tree Postorder Traversal
  - Candy
   - 正向扫一遍处理递增的情况，反向扫一遍处理递减的情况
+ - Spiral Matrix II
+  - 从外面一环一环循环进来，注意处理坐标
+ - Linked List Cycle II
+  - http://fisherlei.blogspot.hk/2013/11/leetcode-linked-list-cycle-ii-solution.html
