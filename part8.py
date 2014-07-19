@@ -216,13 +216,11 @@ class Solution(unittest.TestCase):
         self.assertEqual(self.generateMatrix(2), [[1, 2], [4, 3]])
 
     def detectCycle(self, head):
-
         if not head:
             return None
 
         fast = head
         slow = head
-
         while fast and slow:
             slow = slow.next
             fast = fast.next
@@ -251,6 +249,51 @@ class Solution(unittest.TestCase):
         head.next.next.next.next.next.next = head.next.next
         self.assertEqual(self.detectCycle(head).val, 3)
 
+    def getRow(self, rowIndex):
+        if rowIndex == 0:
+            return [1]
+        if rowIndex == 1:
+            return [1, 1]
+
+        row = [0] * (rowIndex + 1)
+        row[0], row[1] = 1, 1
+        cur_item = 2
+        while cur_item <= rowIndex:
+            for i in xrange(cur_item, 0, -1):
+                row[i] = row[i] + row[i-1]
+            cur_item += 1
+
+        return row[:(rowIndex+1)]
+
+    def test_getRow(self):
+        self.assertEqual([1, 3, 3, 1], self.getRow(3))
+        self.assertEqual([1, 4, 6, 4, 1], self.getRow(4))
+
+    def search(self, A, target):
+        l, r = 0, len(A) - 1
+
+        while l <= r:
+            mid = (l + r) / 2
+            if target == A[mid]:
+                return mid
+
+            if A[mid] >= A[l]:
+                if A[l] <= target and A[mid] >= target:
+                    r = mid - 1
+                else:
+                    l = mid + 1
+            else:
+
+                if A[mid] > target or target >= A[l]:
+                    r = mid - 1
+                else:
+                    l = mid + 1
+
+        return -1
+
+    def test_search(self):
+        src = [4, 5, 6, 7, 0, 1, 2]
+        self.assertEqual(self.search(src, 0), 4)
 
 
 if __name__ == "__main__":

@@ -136,3 +136,9 @@ problems: http://oj.leetcode.com/problems/
   - 从外面一环一环循环进来，注意处理坐标
  - Linked List Cycle II
   - http://fisherlei.blogspot.hk/2013/11/leetcode-linked-list-cycle-ii-solution.html
+ - Pascal's Triangle II
+  - 使用一个 list 保存上次运行的结果，从后往前加
+ - Search in Rotated Sorted Array
+  - A[mid] 比 A[l] 大的话，[l, mid] 处于递增序列
+  - A[mid] 比 A[l] 小的话，mid 处于第二个递增序列
+  - 两种情况分开判断即可
