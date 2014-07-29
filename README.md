@@ -142,3 +142,7 @@ problems: http://oj.leetcode.com/problems/
   - A[mid] 比 A[l] 大的话，[l, mid] 处于递增序列
   - A[mid] 比 A[l] 小的话，mid 处于第二个递增序列
   - 两种情况分开判断即可
+
+#### part9
+ - Insertion Sort List
+  - 检查如果是升序的话就不处理，遇到第一个不是升序的元素就从头开始找插入点
