@@ -64,5 +64,29 @@ class Solution(unittest.TestCase):
 
         self.assertEqual(linked_to_list(rv), [1, 2, 3, 4, 5])
 
+    def grayCode(self, n):
+        if not n:
+            return [0]
+        rv = []
+        limit = 1 << n
+        for i in xrange(limit):
+            rv.append(i ^ (i >> 1))
+
+        return rv
+
+    def test_grayCode(self):
+        rv = sorted(self.grayCode(0))
+        self.assertEqual([0], rv)
+
+        rv = sorted(self.grayCode(1))
+        self.assertEqual([0, 1], rv)
+
+
+        rv = sorted(self.grayCode(2))
+        self.assertEqual([0, 1, 2, 3], rv)
+
+        rv = sorted(self.grayCode(3))
+        self.assertEqual(sorted([0,1,3,2,6,7,5,4]), rv)
+
 if __name__ == "__main__":
     unittest.main()

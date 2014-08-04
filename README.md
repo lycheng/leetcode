@@ -146,3 +146,5 @@ problems: http://oj.leetcode.com/problems/
 #### part9
  - Insertion Sort List
   - 检查如果是升序的话就不处理，遇到第一个不是升序的元素就从头开始找插入点
+ - Gray Code
+  - gray code = (binary code << 1) ^ binary code
