@@ -88,5 +88,34 @@ class Solution(unittest.TestCase):
         rv = sorted(self.grayCode(3))
         self.assertEqual(sorted([0,1,3,2,6,7,5,4]), rv)
 
+    def singleNumber(self, A):
+        num_len = 32
+        bits = [0 for i in range(num_len)]
+        for x in xrange(num_len):
+            count = 0
+            for num in A:
+                count += ((num >> x) & 1)
+            bits[num_len - 1 - x] = count % 3
+
+        neg = False
+        if bits[0]:
+            neg = True
+
+        if neg:
+            bits = "".join([str(1 - bit) for bit in bits])
+            result = -(int(bits, 2) + 1)
+        else:
+            bits = "".join([str(bit) for bit in bits])
+            result = int(bits, 2)
+
+        return result
+
+    def test_singleNumber(self):
+        src = [1, 1, 1, 2, 2, 2, 3]
+        self.assertEqual(3, self.singleNumber(src))
+
+        src = [-2,-2,1,1,-3,1,-3,-3,-4,-2]
+        self.assertEqual(-4, self.singleNumber(src))
+
 if __name__ == "__main__":
     unittest.main()

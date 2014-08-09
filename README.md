@@ -148,3 +148,6 @@ problems: http://oj.leetcode.com/problems/
   - 检查如果是升序的话就不处理，遇到第一个不是升序的元素就从头开始找插入点
  - Gray Code
   - gray code = (binary code << 1) ^ binary code
+ - Single Number II
+  - 计算所有数每一位上的 1 的个数，余 3 之后就是只有一个数的那个数在该位上的值
+  - 注意最后的 Two's complement 的转化 -B = ~B + 1
