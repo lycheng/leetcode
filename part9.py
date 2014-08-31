@@ -117,5 +117,31 @@ class Solution(unittest.TestCase):
         src = [-2,-2,1,1,-3,1,-3,-3,-4,-2]
         self.assertEqual(-4, self.singleNumber(src))
 
+    def maxArea(self, height):
+        beg = 0
+        end = len(height) - 1
+        result = min(height[beg], height[end]) * (end - beg)
+
+        while beg < end:
+            cur = min(height[beg], height[end]) * (end - beg)
+            if cur > result:
+                result = cur
+
+            if height[beg] < height[end]:
+                beg += 1
+            else:
+                end -= 1
+
+        return result
+
+    def test_maxArea(self):
+        h = [1, 2]
+        self.assertEqual(1, self.maxArea(h))
+
+        h = [1, 2, 3, 4, 5, 6, 7, 8]
+        self.assertEqual(16, self.maxArea(h))
+
+
+
 if __name__ == "__main__":
     unittest.main()
