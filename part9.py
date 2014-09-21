@@ -141,6 +141,43 @@ class Solution(unittest.TestCase):
         h = [1, 2, 3, 4, 5, 6, 7, 8]
         self.assertEqual(16, self.maxArea(h))
 
+    def divide(self, dividend, divisor):
+
+        if not dividend:
+            return 0
+        sign = 1 if (dividend > 0 and divisor > 0) or (dividend < 0 and divisor < 0) else -1
+        dividend = abs(dividend)
+        divisor = abs(divisor)
+        k = 0
+        tmp = divisor
+        while dividend > tmp:
+            tmp <<= 1
+            k += 1
+
+        if tmp == dividend:
+            return (1 << k) * sign
+
+        k -= 1
+        tmp >>= 1
+        rv = 0
+        while dividend >= divisor:
+            if dividend >= tmp:
+                rv += 1 << k
+                dividend -= tmp
+            tmp >>= 1
+            k -= 1
+
+        return rv * sign
+
+    def test_divide(self):
+        self.assertEqual(2, self.divide(4, 2))
+        self.assertEqual(7, self.divide(14, 2))
+        self.assertEqual(7, self.divide(15, 2))
+        self.assertEqual(-1, self.divide(-1, 1))
+        self.assertEqual(0, self.divide(1, 2))
+        self.assertEqual(2147483647, self.divide(2147483647, 1))
+        self.assertEqual(715827882, self.divide(2147483647, 3))
+        self.assertEqual(6, self.divide(19, 3))
 
 
 if __name__ == "__main__":
