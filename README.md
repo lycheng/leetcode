@@ -154,3 +154,7 @@ problems: http://oj.leetcode.com/problems/
  - Container With Most Water
   - 最大的容积跟最短的线有关
  - Divide Two Integers
+ - Set Matrix Zeroes
+  - 先判断第一列第一行需不需要清零
+  - 再用第一行第一列保存临时结果
+  - 最后再清理第一行第一列

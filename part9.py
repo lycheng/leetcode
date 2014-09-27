@@ -179,6 +179,67 @@ class Solution(unittest.TestCase):
         self.assertEqual(715827882, self.divide(2147483647, 3))
         self.assertEqual(6, self.divide(19, 3))
 
+    def setZeroes(self, matrix):
+
+        clear_first_row = 0 in matrix[0]
+        clear_first_column = 0 in [row[0] for row in matrix]
+
+        for r_idx, _v in enumerate(matrix):
+            for c_idx, _v in enumerate(matrix[r_idx]):
+                if matrix[r_idx][c_idx]:
+                    continue
+                matrix[r_idx][0] = 0
+                matrix[0][c_idx] = 0
+
+
+        for idx, val in enumerate(matrix[0]):
+            if val or not idx:
+                continue
+            for j in range(len(matrix)):
+                matrix[j][idx] = 0
+
+        for idx, val in enumerate([row[0] for row in matrix]):
+            if val or not idx:
+                continue
+            for j in range(len(matrix[0])):
+                matrix[idx][j] = 0
+
+        if clear_first_row:
+            for idx, val in enumerate(matrix[0]):
+                matrix[0][idx] = 0
+        if clear_first_column:
+            for idx, val in enumerate([row[0] for row in matrix]):
+                matrix[idx][0] = 0
+        return matrix
+
+    def test_setZeroes(self):
+        matrix = [[0]]
+        self.assertEqual([[0]], self.setZeroes(matrix))
+
+        matrix = [
+            [0, 1, 2],
+            [1, 0, 2],
+            [3, 1, 2],
+        ]
+        result = [
+            [0, 0, 0],
+            [0, 0, 0],
+            [0, 0, 2],
+        ]
+        self.assertEqual(result, self.setZeroes(matrix))
+
+        matrix = [
+            [1, 1, 2],
+            [1, 0, 2],
+            [3, 1, 2],
+        ]
+        result = [
+            [1, 0, 2],
+            [0, 0, 0],
+            [3, 0, 2],
+        ]
+        self.assertEqual(result, self.setZeroes(matrix))
+
 
 if __name__ == "__main__":
     unittest.main()
