@@ -7,6 +7,7 @@ __email__ = "lycheng997@gmail.com"
 from public import ListNode, list_to_linked, linked_to_list
 
 import unittest
+import time
 
 class Solution(unittest.TestCase):
 
@@ -239,6 +240,59 @@ class Solution(unittest.TestCase):
             [3, 0, 2],
         ]
         self.assertEqual(result, self.setZeroes(matrix))
+
+    def longestPalindrome(self, s):
+        # len_s = len(s)
+        # if len_s <= 1:
+            # return s
+        # m = [[False] * len_s for i in s]
+        # max_len = 0
+        # beg = 0
+        # end = 1
+        # for j in range(1, len_s):
+            # for i in range(j):
+                # m[i][j] = (s[i] == s[j]) and (j - i < 2 or m[i+1][j-1])
+                # if m[i][j] and j - i + 1 > max_len:
+                    # beg = i
+                    # end = j
+                    # max_len = j - i + 1
+                # # use for j - i == 2
+                # m[j][j] = True
+
+        # return s[beg:end+1]
+        # the code above time Exceeded
+        def get_longest_palindrome(self, l, r):
+            while l >= 0 and r < len(s) and s[l] == s[r]:
+                l -= 1
+                r += 1
+            return s[l+1: r]
+
+        rv = ''
+        for i in range(len(s)):
+            s1 = get_longest_palindrome(s, i, i)
+            if len(s1) > len(rv):
+                rv = s1
+            s2 = get_longest_palindrome(s, i, i + 1)
+            if len(s2) > len(rv):
+                rv = s2
+
+        return rv
+
+    def test_longestPalindrome(self):
+        s = '123321'
+        self.assertEqual(s, self.longestPalindrome(s))
+        s = '12321'
+        self.assertEqual(s, self.longestPalindrome(s))
+        s = 'aaaabaaa'
+        self.assertEqual('aaabaaa', self.longestPalindrome(s))
+        s = 'abb'
+        self.assertEqual('bb', self.longestPalindrome(s))
+
+
+        b = time.time()
+        s = 'a' * 1000
+        self.longestPalindrome(s)
+        print time.time() - b
 
 
 if __name__ == "__main__":
