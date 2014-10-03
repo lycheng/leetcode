@@ -288,11 +288,24 @@ class Solution(unittest.TestCase):
         s = 'abb'
         self.assertEqual('bb', self.longestPalindrome(s))
 
+    def combine(self, n, k):
+        if n <= 0 or n < k:
+            return []
+        rv = []
+        def get_combine(idx, t):
+            if len(t) == k:
+                rv.append(t[:])
+                return
+            for i in range(idx, n+1):
+                t.append(i)
+                get_combine(i+1, t)
+                t.pop()
 
-        b = time.time()
-        s = 'a' * 1000
-        self.longestPalindrome(s)
-        print time.time() - b
+        get_combine(1, [])
+        return rv
+
+    def test_combine(self):
+        print self.combine(3, 2)
 
 
 if __name__ == "__main__":

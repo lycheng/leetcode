@@ -161,3 +161,4 @@ problems: http://oj.leetcode.com/problems/
  - Longest Palindromic Substring
   - 可用动态规划，但写出来的会超时 Orz
   - 另一种就是计算每个以 i 为中心节点（分奇偶长度的子串的情况）的最长回文
+ - Combinations
