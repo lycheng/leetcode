@@ -162,3 +162,8 @@ problems: http://oj.leetcode.com/problems/
   - 可用动态规划，但写出来的会超时 Orz
   - 另一种就是计算每个以 i 为中心节点（分奇偶长度的子串的情况）的最长回文
  - Combinations
+ - Populating next right pointers in each node ii
+  - 每个递归找到当前层级最靠近目前节点的左下级节点或者右下级节点
+  - 当前的节点的右下级节点 next 就确定了
+  - 左下级节点也可以确定了
+  - 递归从右子树开始

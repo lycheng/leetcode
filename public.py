@@ -15,6 +15,7 @@ class TreeNode(object):
         self.val = x
         self.left = None
         self.right = None
+        self.next = None
 
     def __str__(self):
         return str(self.val)

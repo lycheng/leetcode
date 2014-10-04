@@ -4,10 +4,10 @@
 __author__ = 'lycheng'
 __email__ = "lycheng997@gmail.com"
 
-from public import ListNode, list_to_linked, linked_to_list
+from public import ListNode, TreeNode
+from public import list_to_linked, linked_to_list
 
 import unittest
-import time
 
 class Solution(unittest.TestCase):
 
@@ -304,9 +304,35 @@ class Solution(unittest.TestCase):
         get_combine(1, [])
         return rv
 
-    def test_combine(self):
-        print self.combine(3, 2)
+    def connect(self, root):
+        if not root:
+            return
 
+        next_node = root.next
+        while next_node:
+            if next_node.left:
+                next_node = next_node.left
+                break
+            if next_node.right:
+                next_node = next_node.right
+                break
+            next_node = next_node.next
+
+        if root.right:
+            root.right.next = next_node
+        if root.left:
+            root.left.next = root.right if root.right else next_node
+        self.connect(root.right)
+        self.connect(root.left)
+
+    def test_connects(self):
+        root = TreeNode(1)
+        root.left = TreeNode(2)
+        root.right = TreeNode(3)
+        root.left.left = TreeNode(4)
+        root.right.right = TreeNode(5)
+        self.connect(root)
+        self.assertEqual(root.left.left.next.val, 5)
 
 if __name__ == "__main__":
     unittest.main()
