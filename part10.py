@@ -48,6 +48,25 @@ class Solution(unittest.TestCase):
 
         self.assertEqual([[3], [20, 9], [15, 7]], self.zigzagLevelOrder(root))
 
+    def subsets(self, S):
+        if not S:
+            return []
+        S = sorted(S)
+        rv = [[]]
+        len_s = len(S)
+        def helper(idx, tmp):
+            for i in range(idx, len_s):
+                tmp.append(S[i])
+                rv.append(tmp[:])
+                if i < len_s - 1:
+                    helper(i+1, tmp)
+                tmp.pop()
+        helper(0, [])
+        return rv
+
+    def test_subsets(self):
+        rv = [[], [1], [1, 2], [1, 2, 3], [1, 3], [2], [2, 3], [3]]
+        self.assertEqual(rv, self.subsets([1, 2, 3]))
 
 if __name__ == "__main__":
     unittest.main()
