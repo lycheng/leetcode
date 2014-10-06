@@ -68,5 +68,30 @@ class Solution(unittest.TestCase):
         rv = [[], [1], [1, 2], [1, 2, 3], [1, 3], [2], [2, 3], [3]]
         self.assertEqual(rv, self.subsets([1, 2, 3]))
 
+    def subsetsWithDup(self, S):
+        if not S:
+            return []
+        S = sorted(S)
+        rv = [[]]
+        len_s = len(S)
+        def helper(idx, tmp):
+            i = idx
+            while i < len_s:
+                tmp.append(S[i])
+                rv.append(tmp[:])
+                if i < len_s - 1:
+                    helper(i+1, tmp)
+                tmp.pop()
+                while i < len_s - 1 and S[i] == S[i+1]:
+                    i += 1
+                i += 1
+        helper(0, [])
+        return rv
+
+    def test_subsetsWithDup(self):
+        rv = [[], [1], [1, 2], [1, 2, 2], [2], [2, 2]]
+        self.assertEqual(rv, self.subsetsWithDup([1, 2, 2]))
+
+
 if __name__ == "__main__":
     unittest.main()
