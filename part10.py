@@ -92,6 +92,38 @@ class Solution(unittest.TestCase):
         rv = [[], [1], [1, 2], [1, 2, 2], [2], [2, 2]]
         self.assertEqual(rv, self.subsetsWithDup([1, 2, 2]))
 
+    def reverseBetween(self, head, m, n):
+        if not head or not head.next:
+            return head
+        first = ListNode(-1)
+        first.next = head
+        prev = first
+        # prev - m - ... - n
+        for i in range(m-1):
+            prev = prev.next
+
+        p = prev.next
+        q = p.next
+
+        for i in range(n-m):
+            r = q.next
+            q.next = p
+            if i == n - m - 1:
+                prev.next.next = r
+                prev.next = q
+            p = q
+            q = r
+
+        return first.next
+
+
+    def test_reverseBetween(self):
+        li = list_to_linked([1, 2, 3, 4, 5, 6])
+        head = self.reverseBetween(li, 1, 3)
+        li = linked_to_list(head)
+        exp = [3, 2, 1, 4, 5, 6]
+        self.assertEqual(li, exp)
+
 
 if __name__ == "__main__":
     unittest.main()

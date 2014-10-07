@@ -9,6 +9,9 @@ class ListNode(object):
         self.val = x
         self.next = None
 
+    def __str__(self):
+        return str(self.val)
+
 
 class TreeNode(object):
     def __init__(self, x):
