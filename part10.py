@@ -116,13 +116,37 @@ class Solution(unittest.TestCase):
 
         return first.next
 
-
     def test_reverseBetween(self):
         li = list_to_linked([1, 2, 3, 4, 5, 6])
         head = self.reverseBetween(li, 1, 3)
         li = linked_to_list(head)
         exp = [3, 2, 1, 4, 5, 6]
         self.assertEqual(li, exp)
+
+    def letterCombinations(self, digits):
+        digit_map = {'0': "", '1': ' ', '2': 'abc', '3': 'def', '4': 'ghi', '5': 'jkl', '6': 'mno', \
+                '7': 'pqrs', '8': 'tuv', '9': 'wxyz'}
+        rv = []
+        def helper(idx, cur_set):
+            if len(cur_set) == len(digits):
+                rv.append(''.join(cur_set))
+                return
+            cur_digit = digits[idx]
+            letters = digit_map[cur_digit]
+            for i in letters:
+                cur_set.append(i)
+                helper(idx+1, cur_set)
+                cur_set.pop()
+        helper(0, [])
+        return rv
+
+    def test_letterCombinations(self):
+        s = '23'
+        rv = ['ad', 'ae', 'af', 'bd', 'be', 'bf', 'cd', 'ce', 'cf']
+        self.assertEqual(self.letterCombinations(s), rv)
+
+
+
 
 
 if __name__ == "__main__":
