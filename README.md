@@ -174,3 +174,6 @@ problems: http://oj.leetcode.com/problems/
   - Subsets II
   - Reverse Linked List II
   - Letter Combinations of a Phone Number
+  - Longest Consecutive Sequence
+   - 通过 visited 保存每个节点是否访问过
+   - 每访问一个未访问过的节点找出其所在的最大连续段的长度

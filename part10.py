@@ -145,7 +145,40 @@ class Solution(unittest.TestCase):
         rv = ['ad', 'ae', 'af', 'bd', 'be', 'bf', 'cd', 'ce', 'cf']
         self.assertEqual(self.letterCombinations(s), rv)
 
+    def longestConsecutive(self, num):
+        if not num:
+            return 0
+        max_len = -1
+        visited = {n:False for n in num}
+        for n in num:
+            if visited[n]:
+                continue
+            visited[n] = True
+            cur_len = 1
 
+            prev = n - 1
+            while prev in visited:
+                cur_len += 1
+                visited[prev] = True
+                prev -= 1
+
+            next = n + 1
+            while next in visited:
+                cur_len += 1
+                visited[next] = True
+                next += 1
+
+            if cur_len > max_len:
+                max_len = cur_len
+
+        return max_len
+
+    def test_longestConsecutive(self):
+        li = [100, 4, 200, 1, 3, 2]
+        self.assertEqual(4, self.longestConsecutive(li))
+
+        li = [1, 2, 0, 1]
+        self.assertEqual(3, self.longestConsecutive(li))
 
 
 
