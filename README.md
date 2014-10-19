@@ -177,3 +177,6 @@ problems: http://oj.leetcode.com/problems/
   - Longest Consecutive Sequence
    - 通过 visited 保存每个节点是否访问过
    - 每访问一个未访问过的节点找出其所在的最大连续段的长度
+  - Construct Binary Tree from Inorder and Postorder Traversal
+  - Construct Binary Tree from Preorder and Inorder Traversal
+   - 两题都一样，通过 inorder 分成两边进行递归处理

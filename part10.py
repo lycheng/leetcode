@@ -180,6 +180,35 @@ class Solution(unittest.TestCase):
         li = [1, 2, 0, 1]
         self.assertEqual(3, self.longestConsecutive(li))
 
+    def inorder_postorder_to_tree(self, inorder, postorder):
+        def helper(inorder, postorder):
+            if not inorder:
+                return None
+            root_val = postorder[-1]
+            root = TreeNode(root_val)
+            mid_idx = inorder.index(root_val)
+
+            root.left = helper(inorder[:mid_idx], postorder[:mid_idx])
+            root.right = helper(inorder[mid_idx+1:], postorder[mid_idx:-1])
+
+            return root
+
+        return helper(inorder, postorder)
+
+    def preorder_inorder_to_tree(self, preorder, inorder):
+        def helper(preorder, inorder):
+            if not preorder:
+                return None
+
+            root_val = preorder[0]
+            root = TreeNode(root_val)
+            mid_idx = inorder.index(root_val)
+
+            root.left = helper(preorder[1:mid_idx+1], inorder[:mid_idx])
+            root.right = helper(preorder[1+mid_idx:], inorder[mid_idx+1:])
+            return root
+
+        return helper(preorder, inorder)
 
 
 if __name__ == "__main__":
