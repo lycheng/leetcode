@@ -8,6 +8,7 @@ from public import ListNode, TreeNode
 from public import list_to_linked, linked_to_list
 
 import unittest
+from string import ascii_lowercase
 
 class Solution(unittest.TestCase):
 
@@ -209,6 +210,33 @@ class Solution(unittest.TestCase):
             return root
 
         return helper(preorder, inorder)
+
+    def isPalindrome(self, s):
+        def is_valid(c):
+            if c >= 'a' and c <= 'z':
+                return True
+            if c >= '0' and c <= '9':
+                return True
+            return False
+
+        if not s:
+            return True
+        s = s.lower().replace(' ', '')
+        letters = [c for c in s if is_valid(c)]
+        beg = 0
+        end = len(letters) - 1
+
+        while beg < end:
+            if letters[beg] != letters[end]:
+                return False
+            beg += 1
+            end -= 1
+
+        return True
+
+    def test_isPalindrome(self):
+        self.assertTrue(self.isPalindrome('A man, a plan, a canal: Panama'))
+        self.assertFalse(self.isPalindrome('race a car'))
 
 
 if __name__ == "__main__":
