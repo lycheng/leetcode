@@ -180,3 +180,5 @@ problems: http://oj.leetcode.com/problems/
   - Construct Binary Tree from Inorder and Postorder Traversal
   - Construct Binary Tree from Preorder and Inorder Traversal
    - 两题都一样，通过 inorder 分成两边进行递归处理
+  - Valid Palindrome
+  - Count and Say

@@ -238,6 +238,32 @@ class Solution(unittest.TestCase):
         self.assertTrue(self.isPalindrome('A man, a plan, a canal: Panama'))
         self.assertFalse(self.isPalindrome('race a car'))
 
+    def countAndSay(self, n):
+        if not n:
+            return ""
+
+        result = '1'
+        for i in range(n-1):
+            cur_result = ""
+            cur_count = 0
+            prev_num = result[0]
+            for num in result:
+                if prev_num == num:
+                    cur_count += 1
+                else:
+                    cur_result += str(cur_count) + prev_num
+                    cur_count = 1
+                    prev_num = num
+
+            cur_result += str(cur_count) + prev_num
+            result = cur_result
+        return result
+
+    def test_countAndSay(self):
+        self.assertEqual('11', self.countAndSay(2))
+        self.assertEqual('21', self.countAndSay(3))
+        self.assertEqual('1211', self.countAndSay(4))
+
 
 if __name__ == "__main__":
     unittest.main()
