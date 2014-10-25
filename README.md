@@ -182,3 +182,5 @@ problems: http://oj.leetcode.com/problems/
    - 两题都一样，通过 inorder 分成两边进行递归处理
   - Valid Palindrome
   - Count and Say
+  - Palindrome Number
+   - 取第一位数字和最后一位数字来比较

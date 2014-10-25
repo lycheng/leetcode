@@ -264,6 +264,29 @@ class Solution(unittest.TestCase):
         self.assertEqual('21', self.countAndSay(3))
         self.assertEqual('1211', self.countAndSay(4))
 
+    def is_num_Palindrome(self, x):
+        if x < 0:
+            return False
+
+        di = 1
+        while x / di >= 10:
+            di *= 10
+
+        while x:
+            left = x / di
+            right = x % 10
+            if left != right:
+                return False
+            x = (x % di) / 10
+            di /= 100
+        return True
+
+    def test_is_num_Palindrome(self):
+        self.assertTrue(self.is_num_Palindrome(121))
+        self.assertTrue(self.is_num_Palindrome(1221))
+        self.assertTrue(self.is_num_Palindrome(1))
+
+
 
 if __name__ == "__main__":
     unittest.main()
