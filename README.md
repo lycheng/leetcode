@@ -184,3 +184,4 @@ problems: http://oj.leetcode.com/problems/
   - Count and Say
   - Palindrome Number
    - 取第一位数字和最后一位数字来比较
+  - Longest Common Prefix

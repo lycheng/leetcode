@@ -8,7 +8,6 @@ from public import ListNode, TreeNode
 from public import list_to_linked, linked_to_list
 
 import unittest
-from string import ascii_lowercase
 
 class Solution(unittest.TestCase):
 
@@ -285,6 +284,30 @@ class Solution(unittest.TestCase):
         self.assertTrue(self.is_num_Palindrome(121))
         self.assertTrue(self.is_num_Palindrome(1221))
         self.assertTrue(self.is_num_Palindrome(1))
+
+    def longestCommonPrefix(self, strs):
+        if not strs:
+            return ""
+
+        prefix = strs[0]
+        while prefix:
+            found = True
+            for s in strs:
+                if not s.startswith(prefix):
+                    found = False
+                    break
+            if found:
+                break
+            prefix = prefix[:-1]
+
+        return prefix
+
+    def test_longestCommonPrefix(self):
+        strs = ['123456', '12356', '126']
+
+        self.assertEqual('12', self.longestCommonPrefix(strs))
+
+
 
 
 
