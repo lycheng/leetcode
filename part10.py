@@ -308,7 +308,55 @@ class Solution(unittest.TestCase):
         self.assertEqual('12', self.longestCommonPrefix(strs))
 
 
+    def addTwoNumbers(self, l1, l2):
+        if not l1 and not l2:
+            return None
 
+        pre_head = ListNode(-1)
+        head = ListNode(0)
+        pre_head.next = head
+
+        carry = 0
+        while l1 or l2:
+            cur_sum = carry
+            if l1:
+                cur_sum += l1.val
+                l1 = l1.next
+            if l2:
+                cur_sum += l2.val
+                l2 = l2.next
+            carry = cur_sum / 10
+            cur_sum = cur_sum % 10
+            head.val = cur_sum
+            if l1 or l2:
+                head.next = ListNode(0)
+                head = head.next
+
+        if carry:
+            head.next = ListNode(carry)
+
+        return pre_head.next
+
+    def test_addTwoNumbers(self):
+        l1 = [2, 4, 3]
+        l2 = [5, 6, 4]
+        rv = self.addTwoNumbers(list_to_linked(l1), list_to_linked(l2))
+        self.assertEqual([7, 0, 8], linked_to_list(rv))
+
+        l1 = [5]
+        l2 = [5]
+        rv = self.addTwoNumbers(list_to_linked(l1), list_to_linked(l2))
+        self.assertEqual([0, 1], linked_to_list(rv))
+
+        l1 = [5]
+        l2 = []
+        rv = self.addTwoNumbers(list_to_linked(l1), list_to_linked(l2))
+        self.assertEqual([5], linked_to_list(rv))
+
+        l1 = [5, 9]
+        l2 = [5, 2]
+        rv = self.addTwoNumbers(list_to_linked(l1), list_to_linked(l2))
+        self.assertEqual([0, 2, 1], linked_to_list(rv))
 
 
 if __name__ == "__main__":
