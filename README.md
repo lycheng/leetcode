@@ -186,3 +186,6 @@ problems: http://oj.leetcode.com/problems/
    - 取第一位数字和最后一位数字来比较
   - Longest Common Prefix
   - Add Two Numbers
+
+#### MinStack
+  - 用额外一个 list 来保存 min_item 的历史
