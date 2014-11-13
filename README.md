@@ -189,3 +189,7 @@ problems: http://oj.leetcode.com/problems/
 
 #### MinStack
   - 用额外一个 list 来保存 min_item 的历史
+
+#### part11
+  - Convert Sorted List to Binary Search Tree
+   - 每一次把 list 分成两半来处理
