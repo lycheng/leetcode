@@ -51,5 +51,25 @@ class Solution(unittest.TestCase):
         self.assertEqual(1, root.left.val)
         self.assertEqual(3, root.right.val)
 
+    def majorityElement(self, num):
+        count_map = {}
+        majority = None
+        majority_times = 0
+
+        for n in num:
+            if n not in count_map:
+                count_map[n] = 0
+            count_map[n] += 1
+
+            if count_map[n] > majority_times:
+                majority_times = count_map[n]
+                majority = n
+
+        return majority
+
+    def test_majorityElement(self):
+        num = [1, 2, 3, 4, 1, 1, 1]
+        self.assertEqual(self.majorityElement(num), 1)
+
 if __name__ == "__main__":
     unittest.main()
