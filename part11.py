@@ -71,5 +71,22 @@ class Solution(unittest.TestCase):
         num = [1, 2, 3, 4, 1, 1, 1]
         self.assertEqual(self.majorityElement(num), 1)
 
+    def convertToTitle(self, num):
+        ascii_table = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        result = []
+        while num:
+            r = num % 26
+            num /= 26
+            result.append(ascii_table[r-1])
+            if not r:
+                num -= 1
+        return "".join(result[::-1])
+
+
+    def test_convertToTitle(self):
+        self.assertEqual(self.convertToTitle(26), 'Z')
+        self.assertEqual(self.convertToTitle(27), 'AA')
+
+
 if __name__ == "__main__":
     unittest.main()
