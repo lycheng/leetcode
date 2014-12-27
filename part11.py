@@ -87,6 +87,36 @@ class Solution(unittest.TestCase):
         self.assertEqual(self.convertToTitle(26), 'Z')
         self.assertEqual(self.convertToTitle(27), 'AA')
 
+    def compareVersion(self, version1, version2):
+        longer = version1.split('.')
+        shorter = version2.split('.')
+        flag = 1
+
+        if len(longer) < len(shorter):
+            longer, shorter = shorter, longer
+            flag = -1
+
+        for idx in range(len(longer)):
+            longer_item = int(longer[idx])
+            if idx >= len(shorter):
+                if not longer_item:
+                    shorter.append(0)
+                    continue
+                return flag
+            elif longer_item > int(shorter[idx]):
+                return flag
+            elif longer_item < int(shorter[idx]):
+                return -flag
+
+        if len(longer) == len(shorter):
+            return 0
+
+    def test_compareVersion(self):
+        self.assertEqual(self.compareVersion('2.1', '1.1'), 1)
+        self.assertEqual(self.compareVersion('1.1', '1.1'), 0)
+        self.assertEqual(self.compareVersion('1.1', '2.1'), -1)
+        self.assertEqual(self.compareVersion('1', '1.1'), -1)
+        self.assertEqual(self.compareVersion('1.0', '1'), 0)
 
 if __name__ == "__main__":
     unittest.main()
