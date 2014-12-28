@@ -4,8 +4,9 @@
 __author__ = 'lycheng'
 __email__ = "lycheng997@gmail.com"
 
-from public import ListNode, TreeNode
-from public import list_to_linked, linked_to_list
+from public import TreeNode
+from public import list_to_linked
+from public import is_palindrome
 
 import unittest
 
@@ -117,6 +118,37 @@ class Solution(unittest.TestCase):
         self.assertEqual(self.compareVersion('1.1', '2.1'), -1)
         self.assertEqual(self.compareVersion('1', '1.1'), -1)
         self.assertEqual(self.compareVersion('1.0', '1'), 0)
+
+    def partition(self, s):
+        ''' https://oj.leetcode.com/problems/palindrome-partitioning/
+        '''
+        result = []
+
+        def dfs(cur_idx, cur_result):
+            if cur_idx == len(s):
+                result.append(cur_result[:])
+                return
+
+            for i in range(cur_idx, len(s)):
+                cur_str = s[cur_idx:i+1]
+                if is_palindrome(cur_str):
+                    cur_result.append(cur_str)
+                    dfs(i+1, cur_result)
+                    cur_result.pop()
+
+        dfs(0, [])
+        return result
+
+
+
+    def test_partition(self):
+        s = 'aab'
+        rv = self.partition(s)
+        self.assertIn(['a', 'a', 'b'], rv)
+        self.assertIn(['aa', 'b'], rv)
+        self.assertEqual(2, len(rv))
+
+
 
 if __name__ == "__main__":
     unittest.main()

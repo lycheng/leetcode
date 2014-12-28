@@ -45,3 +45,15 @@ def list_to_linked(li):
         beg = beg.next
 
     return head
+
+def is_palindrome(src):
+    b = 0
+    e = len(src) - 1
+
+    while b < e:
+        if src[b] != src[e]:
+            return False
+        b += 1
+        e -= 1
+
+    return True
