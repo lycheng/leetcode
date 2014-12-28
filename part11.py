@@ -73,6 +73,8 @@ class Solution(unittest.TestCase):
         self.assertEqual(self.majorityElement(num), 1)
 
     def convertToTitle(self, num):
+        '''https://oj.leetcode.com/problems/excel-sheet-column-title/
+        '''
         ascii_table = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
         result = []
         while num:
@@ -139,14 +141,28 @@ class Solution(unittest.TestCase):
         dfs(0, [])
         return result
 
-
-
     def test_partition(self):
         s = 'aab'
         rv = self.partition(s)
         self.assertIn(['a', 'a', 'b'], rv)
         self.assertIn(['aa', 'b'], rv)
         self.assertEqual(2, len(rv))
+
+    def titleToNumber(self, s):
+        '''https://oj.leetcode.com/problems/excel-sheet-column-number/
+        '''
+        ascii_table = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        result = 0
+        p = 0
+        for l in s[::-1]:
+            idx = ascii_table.index(l) + 1
+            result += idx * (26 ** p)
+            p += 1
+        return result
+
+    def test_titleToNumber(self):
+        self.assertEqual(self.titleToNumber('Z'), 26)
+        self.assertEqual(self.titleToNumber('AA'), 27)
 
 
 
