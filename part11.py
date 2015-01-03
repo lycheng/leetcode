@@ -164,6 +164,25 @@ class Solution(unittest.TestCase):
         self.assertEqual(self.titleToNumber('Z'), 26)
         self.assertEqual(self.titleToNumber('AA'), 27)
 
+    def trailingZeroes(self, n):
+        ''' https://oj.leetcode.com/problems/factorial-trailing-zeroes/
+
+        1. 0 的数量取决于 2 和 5 的数量，5 的数量又比 2 少
+        2. 25 这种又包含两个 5 所以需要一直除知道 n 小于 5
+        '''
+        count_5 = 0
+
+        while n:
+            c = n / 5
+            count_5 += c
+            n = c
+        return count_5
+
+    def test_trailingZeroes(self):
+        self.assertEqual(self.trailingZeroes(0), 0)
+        self.assertEqual(self.trailingZeroes(1), 0)
+        self.assertEqual(self.trailingZeroes(10), 2)
+
 
 
 if __name__ == "__main__":
