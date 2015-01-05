@@ -183,6 +183,36 @@ class Solution(unittest.TestCase):
         self.assertEqual(self.trailingZeroes(1), 0)
         self.assertEqual(self.trailingZeroes(10), 2)
 
+    def findPeakElement(self, num):
+        ''' https://oj.leetcode.com/problems/find-peak-element/
+        '''
+        idx = 0
+        size_of_num = len(num)
+
+        if not size_of_num:
+            return None
+
+        if size_of_num == 1:
+            return 0
+
+        while idx < size_of_num:
+            if idx == 0:
+                if num[idx] > num[idx+1]:
+                    return idx
+            elif idx == size_of_num - 1:
+                if num[idx] > num[idx-1]:
+                    return idx
+            else:
+                if num[idx] > num[idx-1] and num[idx] > num[idx+1]:
+                    return idx
+                if num[idx] > num[idx+1]:
+                    idx += 1
+            idx += 1
+        return None
+
+    def test_findPeakElement(self):
+        num = [1, 2, 3, 1]
+        self.assertEqual(self.findPeakElement(num), 2)
 
 
 if __name__ == "__main__":
