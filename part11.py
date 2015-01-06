@@ -214,6 +214,48 @@ class Solution(unittest.TestCase):
         num = [1, 2, 3, 1]
         self.assertEqual(self.findPeakElement(num), 2)
 
+    def ladderLength(self, start, end, dict):
+        ''' https://oj.leetcode.com/problems/word-ladder/
+        '''
+
+        def get_next_words(src):
+            rv = []
+            table = 'abcdefghijklmnopqrstuvwxyz'
+
+            for idx, c in enumerate(src):
+                for t in table:
+                    if t == c:
+                        continue
+                    dst = "%s%s%s" % (src[:idx], t, src[idx+1:])
+                    rv.append(dst)
+            return rv
+
+        cur_stack = [start]
+        count = 1
+        while cur_stack:
+            next_stack = []
+            for src in cur_stack:
+                next_words = get_next_words(src)
+                for word in next_words:
+                    if word == end:
+                        return count + 1
+                    if word not in dict:
+                        continue
+                    dict.remove(word)
+                    next_stack.append(word)
+
+            if not next_stack:
+                return 0
+            cur_stack = next_stack
+            count += 1
+
+        return 0
+
+    def test_ladderLength(self):
+        start = 'hit'
+        end = 'cog'
+        words = set(["hot","dot","dog","lot","log"])
+        self.assertEqual(self.ladderLength(start, end, words), 5)
 
 if __name__ == "__main__":
     unittest.main()
