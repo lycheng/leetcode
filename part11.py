@@ -257,5 +257,34 @@ class Solution(unittest.TestCase):
         words = set(["hot","dot","dog","lot","log"])
         self.assertEqual(self.ladderLength(start, end, words), 5)
 
+    def flatten(self, root):
+        ''' https://oj.leetcode.com/problems/flatten-binary-tree-to-linked-list/
+        '''
+        if not root:
+            return
+
+        self.flatten(root.left)
+        self.flatten(root.right)
+        if not root.left:
+            return
+
+        node = root.left
+        while node.right:
+            node = node.right
+
+        node.right = root.right
+        root.right = root.left
+        root.left = None
+
+    def test_flatten(self):
+        root = TreeNode(1)
+        root.left = TreeNode(2)
+        root.right = TreeNode(3)
+        self.flatten(root)
+
+        self.assertEqual(root.val, 1)
+        self.assertEqual(root.right.val, 2)
+        self.assertEqual(root.right.right.val, 3)
+
 if __name__ == "__main__":
     unittest.main()
