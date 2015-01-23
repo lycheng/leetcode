@@ -64,12 +64,21 @@ class Solution(unittest.TestCase):
 
         self.assertEqual(0, self.getIntersectionNode(a1, b1).val)
 
+    def largestNumber(self, num):
+        ''' https://oj.leetcode.com/problems/largest-number/
+        '''
 
+        def cmp(x, y):
+            a = str(x) + str(y)
+            b = str(y) + str(x)
+            return int(b) - int(a)
 
+        num = sorted(num, cmp=cmp)
+        return str(int("".join([str(n) for n in num])))
 
-
-
-
+    def test_largestNumber(self):
+        src = [3, 30, 34, 5, 9]
+        self.assertEqual('9534330', self.largestNumber(src))
 
 
 if __name__ == "__main__":
