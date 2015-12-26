@@ -51,3 +51,15 @@ class TestTree(unittest.TestCase):
         p.right = TreeNode(3)
 
         self.assertEqual(o.maxDepth(p), 2)
+
+    def test_inorderTraversal(self):
+        ''' test inorderTraversal
+        '''
+        from tree.binary_tree_inorder_traversal import Solution
+        o = Solution()
+
+        p = TreeNode(1)
+        p.left = TreeNode(2)
+        p.right = TreeNode(3)
+
+        self.assertEqual(o.inorderTraversal(p), [2, 1, 3])
