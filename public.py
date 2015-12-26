@@ -4,6 +4,7 @@
 __author__ = 'lycheng'
 __email__ = "lycheng997@gmail.com"
 
+
 class ListNode(object):
     def __init__(self, x):
         self.val = x
@@ -34,6 +35,7 @@ def linked_to_list(head):
         beg = beg.next
     return rv
 
+
 def list_to_linked(li):
     if not li:
         return None
@@ -46,6 +48,7 @@ def list_to_linked(li):
 
     return head
 
+
 def is_palindrome(src):
     b = 0
     e = len(src) - 1
@@ -55,5 +58,4 @@ def is_palindrome(src):
             return False
         b += 1
         e -= 1
-
     return True
