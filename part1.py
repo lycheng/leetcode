@@ -4,6 +4,7 @@
 __author__ = 'lycheng'
 __email__ = "lycheng997@gmail.com"
 
+
 class Solution(object):
     def reverseWords(self, s):
         ''' reverseWords
@@ -22,24 +23,6 @@ class Solution(object):
         '''
         rv = reduce(lambda x, y: x ^ y, li)
         return rv
-
-    def maxDepth(self, root):
-        if not root:
-            return 0
-        return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))
-
-    def isSameTree(self, p, q):
-        '''
-        '''
-        if not p and not q:
-            return True
-
-        if p and q:
-            if p.val != q.val:
-                return False
-            return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
-
-        return False
 
     def reverse(self, x):
         ''' reverse number
@@ -71,32 +54,6 @@ class Solution(object):
             fast = fast.next.next
 
         return False
-
-    def preorderTraversal(self, root):
-        ''' binary tree preorder
-        '''
-        rv = []
-        if not root:
-            return rv
-
-        rv.append(root.val)
-        rv.extend(self.preorderTraversal(root.left))
-        rv.extend(self.preorderTraversal(root.right))
-
-        return rv
-
-    def inorderTraversal(self, root):
-        ''' binary tree inorder
-        '''
-        rv = []
-        if not root:
-            return rv
-
-        rv.extend(self.inorderTraversal(root.left))
-        rv.append(root.val)
-        rv.extend(self.inorderTraversal(root.right))
-
-        return rv
 
     def searchInsert(self, A, target):
         if target in A:
