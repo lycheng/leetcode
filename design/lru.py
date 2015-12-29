@@ -1,8 +1,8 @@
 #!/usr/bin/python2.7
 # -*- coding: utf-8 -*-
 
-__author__ = 'lycheng'
-__email__ = "lycheng997@gmail.com"
+from collections import OrderedDict
+
 
 class ListNode(object):
     def __init__(self, val, prev=None, next=None):
@@ -10,8 +10,10 @@ class ListNode(object):
         self.prev = prev
         self.next = next
 
+
 class LRUCache(object):
-    # @param capacity, an integer
+    ''' TLE
+    '''
     def __init__(self, capacity):
         self.capacity = capacity
         self.size = 0
@@ -47,7 +49,7 @@ class LRUCache(object):
 
         while self.size > self.capacity:
             tail_node = self.tail.prev
-            if tail_node.val == None: # head
+            if not tail_node.val:  # head
                 return
             self.__del_node(tail_node.val[0])
 
@@ -63,62 +65,60 @@ class LRUCache(object):
         self.key_index.pop(key)
         self.size -= 1
 
-    def print_val(self):
-        head_node = self.head.next
-        print "---"
-        while head_node and head_node.val:
-            print head_node.val
-            head_node = head_node.next
+    def __get_val(self, key):
+        ''' get a val
+        '''
+        ptr = self.head.next
+        while ptr.next:
+            if ptr.val[0] == key:
+                return ptr.val[1]
+            ptr = ptr.next
 
-        print "---"
-
-    # @return an integer
     def get(self, key):
         if key not in self.key_index:
             return -1
 
-        key, val = self.key_index[key].val
+        # key, val = self.key_index[key].val
+        val = self.__get_val(key)
         self.__del_node(key)
         node = ListNode((key, val))
         self.__set(node)
 
         return val
 
-    # @param key, an integer
-    # @param value, an integer
-    # @return nothing
     def set(self, key, value):
+
         if key in self.key_index:
             self.__del_node(key)
 
         node = ListNode((key, value))
         self.__set(node)
 
-if __name__ == "__main__":
-    #2,[set(2,1),set(2,2),get(2),set(1,1),set(4,1),get(2)]
-    #3,[set(1,1),set(2,2),set(3,3),set(4,4),get(4),get(3),get(2),get(1),set(5,5),get(1),get(2),get(3),get(4),get(5)]
 
-    obj = LRUCache(3)
-    obj.set(1, 1)
-    obj.set(2, 2)
-    obj.set(3, 3)
-    obj.set(4, 4)
-    r = obj.get(4)
-    print "get val: %d" % r
-    r = obj.get(3)
-    print "get val: %d" % r
-    r = obj.get(2)
-    print "get val: %d" % r
-    r = obj.get(1)
-    print "get val: %d" % r
-    obj.set(5, 5)
-    r = obj.get(1)
-    print "get val: %d" % r
-    r = obj.get(2)
-    print "get val: %d" % r
-    r = obj.get(3)
-    print "get val: %d" % r
-    r = obj.get(4)
-    print "get val: %d" % r
-    r = obj.get(5)
-    print "get val: %d" % r
+class LRUCacheWithOrderedDict(object):
+    def __init__(self, capacity):
+        self.capacity = capacity
+        self.data = OrderedDict()
+
+    def get(self, key):
+        '''
+
+        :param key: string
+        '''
+        if key not in self.data:
+            return -1
+        value = self.data.pop(key)
+        self.data[key] = value
+        return value
+
+    def set(self, key, value):
+        '''
+
+        :param key: string
+        :param value: string or something
+        '''
+        if key in self.data:
+            self.data.pop(key)
+        elif len(self.data) == self.capacity:
+            self.data.popitem(last=False)
+        self.data[key] = value
