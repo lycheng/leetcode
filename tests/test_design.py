@@ -2,7 +2,7 @@
 
 import unittest
 
-from design import lru
+from design import lru, min_stack
 
 
 class TestDesign(unittest.TestCase):
@@ -30,3 +30,17 @@ class TestDesign(unittest.TestCase):
         obj.set(5, 5)
 
         self.assertEqual(obj.get(1), -1)
+
+    def test_min_stack(self):
+        s = min_stack.MinStack()
+
+        s.push(512)
+        s.push(-1024)
+        s.push(-1024)
+        s.push(512)
+        s.pop()
+        self.assertEqual(s.getMin(), -1024)
+        s.pop()
+        self.assertEqual(s.getMin(), -1024)
+        s.pop()
+        self.assertEqual(s.getMin(), 512)

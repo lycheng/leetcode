@@ -78,8 +78,8 @@ class LRUCache(object):
         if key not in self.key_index:
             return -1
 
-        # key, val = self.key_index[key].val
-        val = self.__get_val(key)
+        key, val = self.key_index[key].val
+        # val = self.__get_val(key)
         self.__del_node(key)
         node = ListNode((key, val))
         self.__set(node)
