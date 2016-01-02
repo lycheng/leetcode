@@ -215,40 +215,6 @@ class Solution(unittest.TestCase):
         self.assertEqual(self.generateMatrix(1), [[1]])
         self.assertEqual(self.generateMatrix(2), [[1, 2], [4, 3]])
 
-    def detectCycle(self, head):
-        if not head:
-            return None
-
-        fast = head
-        slow = head
-        while fast and slow:
-            slow = slow.next
-            fast = fast.next
-            if fast:
-                fast = fast.next
-            if fast == slow:
-                break
-
-        if not fast:
-            return None
-
-        slow = head
-        while slow != fast:
-            slow = slow.next
-            fast = fast.next
-
-        return fast
-
-    def test_detectCycle(self):
-        head = ListNode(1)
-        head.next = ListNode(2)
-        head.next.next = ListNode(3)
-        head.next.next.next = ListNode(4)
-        head.next.next.next.next = ListNode(5)
-        head.next.next.next.next.next = ListNode(6)
-        head.next.next.next.next.next.next = head.next.next
-        self.assertEqual(self.detectCycle(head).val, 3)
-
     def getRow(self, rowIndex):
         if rowIndex == 0:
             return [1]
