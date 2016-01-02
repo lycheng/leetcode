@@ -35,26 +35,6 @@ class Solution(object):
         x = str(x * m)[::-1]
         return m * int(x)
 
-    def hasCycle(self, head):
-        ''' check linked list is a cycle
-        '''
-        if not head or not head.next:
-            return False
-
-        slow = head
-        fast = head.next.next
-
-        while fast:
-            if slow == fast:
-                return True
-            slow = slow.next
-            if not fast.next or not fast.next.next:
-                return False
-
-            fast = fast.next.next
-
-        return False
-
     def searchInsert(self, A, target):
         if target in A:
             return A.index(target)
