@@ -2,7 +2,8 @@
 
 import unittest
 
-from linked_list import delete_node, list_cycle
+from linked_list import (delete_node, list_cycle, remove_elements,
+                         reverse_list)
 from public import ListNode
 
 
@@ -53,3 +54,38 @@ class TestLinkedList(unittest.TestCase):
         head.next.next.next.next.next = cross
 
         self.assertEqual(so.detectCycle(head), cross)
+
+    def test_remove_elements(self):
+        so = remove_elements.Solution()
+        self.assertFalse(so.removeElements(None, 0))
+
+        head = ListNode(1)
+        head.next = ListNode(2)
+        head.next.next = ListNode(2)
+        head.next.next.next = ListNode(3)
+        head.next.next.next.next = ListNode(4)
+
+        head = so.removeElements(head, 1)
+        self.assertEqual(head.val, 2)
+
+        head = so.removeElements(head, 2)
+        self.assertEqual(head.val, 3)
+
+        head = so.removeElements(head, 4)
+
+        self.assertFalse(head.next)
+
+    def test_reverse_linked_list(self):
+        so = reverse_list.Solution()
+        self.assertFalse(so.reverseList_iteratively(None))
+
+        head = ListNode(1)
+        head.next = ListNode(2)
+        head.next.next = ListNode(3)
+        self.assertEqual(so.reverseList_iteratively(head).val, 3)
+
+        self.assertFalse(so.reverseList_recursively(None))
+        head = ListNode(1)
+        head.next = ListNode(2)
+        head.next.next = ListNode(3)
+        self.assertEqual(so.reverseList_recursively(head).val, 3)
