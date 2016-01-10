@@ -5,6 +5,7 @@ import unittest
 from dp import range_sum_query
 from dp import range_sum_query_2d
 from dp import max_profit
+from dp import house_robber
 
 
 class TestDp(unittest.TestCase):
@@ -51,3 +52,15 @@ class TestDp(unittest.TestCase):
         self.assertEqual(0, so.maxProfit_II([1]))
         prices = range(1, 10)
         self.assertEqual(8, so.maxProfit_II(prices))
+
+    def test_rob(self):
+        '''
+        '''
+        so = house_robber.Solution()
+        self.assertEqual(0, so.rob([]))
+
+        self.assertEqual(2, so.rob([1, 2]))
+
+        self.assertEqual(9, so.rob([1, 2, 3, 4, 5]))
+
+        self.assertEqual(5, so.rob([1, 5, 3]))
