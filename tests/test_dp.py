@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 
 import unittest
+from random import shuffle
 
 from dp import range_sum_query
 from dp import range_sum_query_2d
+from dp import max_profit
 
 
 class TestDp(unittest.TestCase):
@@ -36,3 +38,17 @@ class TestDp(unittest.TestCase):
 
         obj = range_sum_query_2d.NumMatrix([])
         self.assertEqual(obj.sumRegion(1, 1, 2, 2), 0)
+
+    def test_max_profit(self):
+        '''
+        '''
+        prices = range(1, 10)
+        so = max_profit.Solution()
+
+        self.assertEqual(0, so.maxProfit_I([]))
+        shuffle(prices)
+        self.assertEqual(8, so.maxProfit_I(prices))
+
+        self.assertEqual(0, so.maxProfit_II([1]))
+        prices = range(1, 10)
+        self.assertEqual(8, so.maxProfit_II(prices))
