@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import unittest
-from random import shuffle
 
 from dp import range_sum_query
 from dp import range_sum_query_2d
@@ -46,8 +45,8 @@ class TestDp(unittest.TestCase):
         so = max_profit.Solution()
 
         self.assertEqual(0, so.maxProfit_I([]))
-        shuffle(prices)
-        self.assertEqual(8, so.maxProfit_I(prices))
+        prices = [2, 1, 3, 0]
+        self.assertEqual(2, so.maxProfit_I(prices))
 
         self.assertEqual(0, so.maxProfit_II([1]))
         prices = range(1, 10)
