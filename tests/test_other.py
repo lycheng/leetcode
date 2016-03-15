@@ -2,7 +2,7 @@
 
 import unittest
 
-from others import count_primes
+from others import count_primes, add_digits, move_zeroes
 
 
 class TestDesign(unittest.TestCase):
@@ -15,3 +15,33 @@ class TestDesign(unittest.TestCase):
         self.assertEqual(so.countPrimes(4), 2)
         self.assertEqual(so.countPrimes(5), 2)
         self.assertEqual(so.countPrimes(10), 4)
+
+    def test_add_digits(self):
+        so = add_digits.Solution()
+
+        self.assertEqual(so.addDigits(38), 2)
+        self.assertEqual(so.addDigits(9), 9)
+        self.assertEqual(so.addDigits(0), 0)
+
+    def test_move_zeroes(self):
+        so = move_zeroes.Solution()
+
+        src = [0, 1, 0, 3, 12]
+        dst = [1, 3, 12, 0, 0]
+        so.moveZeroes(src)
+        self.assertEqual(src, dst)
+
+        src = [1, 0]
+        dst = [1, 0]
+        so.moveZeroes(src)
+        self.assertEqual(src, dst)
+
+        src = [1]
+        dst = [1]
+        so.moveZeroes(src)
+        self.assertEqual(src, dst)
+
+        src = []
+        dst = []
+        so.moveZeroes(src)
+        self.assertEqual(src, dst)
