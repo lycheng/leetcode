@@ -2,7 +2,7 @@
 
 import unittest
 
-from others import count_primes, add_digits, move_zeroes
+from others import (count_primes, add_digits, move_zeroes, valid_anagram)
 
 
 class TestDesign(unittest.TestCase):
@@ -45,3 +45,11 @@ class TestDesign(unittest.TestCase):
         dst = []
         so.moveZeroes(src)
         self.assertEqual(src, dst)
+
+    def test_valid_anagram(self):
+        so = valid_anagram.Solution()
+
+        self.assertTrue(so.isAnagram('anagram', 'nagaram'))
+        self.assertFalse(so.isAnagram('rat', 'car'))
+
+        self.assertFalse(so.isAnagram('a', 'ab'))
