@@ -3,6 +3,9 @@
 
 
 class NumMatrix(object):
+    ''' https://leetcode.com/problems/range-sum-query-2d-immutable/
+    '''
+
     def __init__(self, matrix):
         """
         initialize your data structure here.

@@ -6,6 +6,9 @@ __email__ = "lycheng997@gmail.com"
 
 
 class Solution(object):
+    ''' https://leetcode.com/problems/delete-node-in-a-linked-list/
+    '''
+
     def deleteNode(self, node):
         """
         :type node: ListNode

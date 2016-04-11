@@ -8,7 +8,8 @@ __email__ = "lycheng997@gmail.com"
 class Solution(object):
 
     def hasCycle(self, head):
-        """
+        """ https://leetcode.com/problems/linked-list-cycle/
+
         :type head: ListNode
         :rtype: bool
         """
@@ -30,7 +31,7 @@ class Solution(object):
         return False
 
     def detectCycle(self, head):
-        """
+        """ https://leetcode.com/problems/linked-list-cycle-ii/
         :type head: ListNode
         :rtype: bool
         """

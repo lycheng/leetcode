@@ -8,6 +8,8 @@ class ListNode(object):
 
 
 class Solution(object):
+    ''' https://leetcode.com/problems/delete-node-in-a-linked-list/
+    '''
 
     def removeElements(self, head, val):
         """

@@ -2,6 +2,8 @@
 
 
 class Solution(object):
+    '''
+    '''
 
     def maxProfit_I(self, prices):
         if not prices:

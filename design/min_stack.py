@@ -6,6 +6,9 @@ __email__ = "lycheng997@gmail.com"
 
 
 class MinStack(object):
+    ''' https://leetcode.com/problems/min-stack/
+    '''
+
     def __init__(self):
         self.items = []
         self.min_items = []

@@ -3,6 +3,8 @@
 
 
 class NumArray(object):
+    ''' https://leetcode.com/problems/range-sum-query-immutable/
+    '''
 
     def __init__(self, nums):
         """

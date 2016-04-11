@@ -2,6 +2,8 @@
 
 
 class Solution(object):
+    ''' Longest Increasing Subsequence
+    '''
 
     def lengthOfLIS_n2(self, nums):
         """

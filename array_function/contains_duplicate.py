@@ -8,7 +8,7 @@ __email__ = "lycheng997@gmail.com"
 class Solution(object):
 
     def containsDuplicate(self, nums):
-        """
+        """ https://leetcode.com/problems/contains-duplicate/
         :type nums: List[int]
         :rtype: bool
         """
@@ -18,7 +18,7 @@ class Solution(object):
         return len(_set) != len(nums)
 
     def containsDuplicate_ii(self, nums, k):
-        """
+        """ https://leetcode.com/problems/contains-duplicate-ii/
         :type nums: List[int]
         :rtype: bool
         """

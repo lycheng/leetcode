@@ -6,6 +6,7 @@ from dp import range_sum_query
 from dp import range_sum_query_2d
 from dp import max_profit
 from dp import house_robber
+from dp import climbing_stairs
 
 
 class TestDp(unittest.TestCase):
@@ -64,3 +65,10 @@ class TestDp(unittest.TestCase):
         self.assertEqual(9, so.rob([1, 2, 3, 4, 5]))
 
         self.assertEqual(5, so.rob([1, 5, 3]))
+
+    def test_climbStairs(self):
+        '''
+        '''
+        so = climbing_stairs.Solution()
+        self.assertEqual(2, so.climbStairs(2))
+        self.assertEqual(3, so.climbStairs(3))

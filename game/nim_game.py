@@ -6,6 +6,8 @@ __email__ = "lycheng997@gmail.com"
 
 
 class Solution(object):
+    ''' https://leetcode.com/problems/nim-game/
+    '''
 
     def canWinNim_out_of_memory(self, n):
         """

@@ -6,15 +6,6 @@ __email__ = "lycheng997@gmail.com"
 
 
 class Solution(object):
-    def reverseWords(self, s):
-        ''' reverseWords
-        @param s, a string
-        @return a string
-        '''
-        s = ' '.join(s.split())  # 分割出一个个单词出来
-        words = s.split(' ')
-        words = [word[::-1] for word in words]
-        return " ".join(words)[::-1]
 
     def singleNumber(self, li):
         ''' return the single num in array
@@ -59,22 +50,6 @@ class Solution(object):
 
         return beg
 
-    def climbStairs(self, n):
-        if n in [0, 1, 2]:
-            return n
-
-        two_step_behind = 1
-        one_step_behind = 2
-        cur_step = 2
-        cur_solution = 0
-
-        while cur_step < n:
-            cur_solution = two_step_behind + one_step_behind
-            two_step_behind = one_step_behind
-            one_step_behind = cur_solution
-            cur_step += 1
-
-        return cur_solution
 
 def run():
     o = Solution()
