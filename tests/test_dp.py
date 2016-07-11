@@ -7,6 +7,7 @@ from dp import range_sum_query_2d
 from dp import max_profit
 from dp import house_robber
 from dp import climbing_stairs
+from dp import coin_change
 
 
 class TestDp(unittest.TestCase):
@@ -72,3 +73,21 @@ class TestDp(unittest.TestCase):
         so = climbing_stairs.Solution()
         self.assertEqual(2, so.climbStairs(2))
         self.assertEqual(3, so.climbStairs(3))
+
+    def test_coin_change(self):
+        so = coin_change.Solution()
+        self.assertEqual(so.coinChange([1, 2, 5], 11), 3)
+        self.assertEqual(so.coinChangeTLE([1, 2, 5], 11), 3)
+
+        self.assertEqual(so.coinChange([2], 3), -1)
+        self.assertEqual(so.coinChangeTLE([2], 3), -1)
+        self.assertEqual(so.coinChange([1], 0), 0)
+        self.assertEqual(so.coinChangeTLE([1], 0), 0)
+        self.assertEqual(so.coinChange(
+            [370, 417, 408, 156, 143, 434, 168, 83, 177, 280, 117],
+            9953),
+            24)
+        self.assertEqual(so.coinChangeTLE(
+            [370, 417, 408, 156, 143, 434, 168, 83, 177, 280, 117],
+            9953),
+            24)
