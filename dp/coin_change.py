@@ -46,8 +46,6 @@ class Solution(object):
             if updated:
                 min_coin_count[i] = min_count
 
-        print min_coin_count
-
         if amount in min_coin_count:
             return min_coin_count[amount]
         return -1
