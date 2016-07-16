@@ -88,3 +88,30 @@ class TestTree(unittest.TestCase):
 
         paths = so.binaryTreePaths(None)
         self.assertEqual(0, len(paths))
+
+    def test_lowestCommonAncestor(self):
+
+        from tree.lowest_common_ancestor import Solution
+        so = Solution()
+        node6 = TreeNode(6)
+        node2 = TreeNode(2)
+        node8 = TreeNode(8)
+        node0 = TreeNode(0)
+        node4 = TreeNode(4)
+        node3 = TreeNode(3)
+        node5 = TreeNode(5)
+        node8 = TreeNode(8)
+        node7 = TreeNode(7)
+        node9 = TreeNode(9)
+
+        node6.left = node2
+        node6.right = node8
+        node6.left.left = node0
+        node6.left.right = node4
+        node6.left.right.left = node3
+        node6.left.right.right = node5
+        node6.right.left = node7
+        node6.right.right = node9
+
+        self.assertEqual(so.lowestCommonAncestor(node6, node8, node2), node6)
+        self.assertEqual(so.lowestCommonAncestor(node6, node4, node2), node2)

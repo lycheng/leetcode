@@ -5,7 +5,7 @@ python:
     - "3.4"
 
 install:
-    - pip install tox pytest pytest-cov
+    - pip install tox nose
 
 script:
     - tox
