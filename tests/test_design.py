@@ -44,3 +44,17 @@ class TestDesign(unittest.TestCase):
         self.assertEqual(s.getMin(), -1024)
         s.pop()
         self.assertEqual(s.getMin(), 512)
+
+    def test_queue(self):
+        from design import queue
+        q = queue.Queue()
+        self.assertTrue(q.empty())
+
+        q.push(1)
+        q.push(2)
+        q.push(3)
+
+        self.assertEqual(q.peek(), 1)
+        q.pop()
+        self.assertEqual(q.peek(), 2)
+        self.assertFalse(q.empty())
